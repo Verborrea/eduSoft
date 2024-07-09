@@ -64,14 +64,46 @@
 		}
 		:root {
 			--back: #fff;
-			--text: #111;
+			--text: #2e2e2e;
+			--blue: #1982C4;
+			--gray: #F0F0F0;
 
 			background-color: var(--back);
 			color: var(--text);
-			font: 16px 'BC', sans-serif;
 			line-height: 24px;
 			color-scheme: only light;
 			counter-reset: preguntas;
+		}
+		:root, button, input, textarea, select {
+			font: 16px 'BC', sans-serif;
+		}
+		* {
+			box-sizing: border-box;
+		}
+		body {
+			margin: 0;
+		}
+		img, svg {
+			display: block;
+		}
+		button {
+			background: transparent;
+			border: none;
+			cursor: pointer;
+			padding: 0;
+		}
+		a:active, button:active {
+			transform: scale(0.95);
+		}
+		.fc {
+			display: flex;
+			align-items: center;
+		}
+		.logo {
+			font-size: 24px;
+			letter-spacing: -0.024em;
+			font-weight: 600;
+			margin: 0;
 		}
 		</style>
 	</head>
