@@ -2,7 +2,7 @@
 	export let index, unit
 </script>
 
-<article class="fcol16">
+<article id="unit{index}" class="fcol16">
 	<h1>Unidad {index}: {unit.name}</h1>
 	{#each unit.themes as theme, i}
 	<section class="fcol16">
@@ -24,6 +24,7 @@
 
 <style>
 	article {
+		scroll-snap-align: center;
 		flex-shrink: 0;
 		width: 100%;
 		max-width: 840px;

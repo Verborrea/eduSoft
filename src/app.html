@@ -109,6 +109,7 @@
 				--blue: #1982c4;
 				--gray: #f0f0f0;
 				--both: #989898;
+				--inactive: #CFCFCF;
 				--red: #FF595E;
 				--green: #8AC926;
 				--blue: #1982C4;
@@ -121,15 +122,14 @@
 				color-scheme: only light;
 				counter-reset: preguntas;
 			}
-			.super {
-				padding: 24px;
-				height: calc(100dvh - 136px);
+			html {
+				scroll-behavior: smooth;
 			}
-			@media (max-width: 700px) {
-				.super {
-					padding: 16px;
-					height: calc(100dvh - 191.5px);
-				}
+			* {
+				box-sizing: border-box;
+			}
+			body {
+				margin: 0;
 			}
 			:root,
 			button,
@@ -141,12 +141,6 @@
 					sans-serif;
 				font-weight: 500;
 			}
-			* {
-				box-sizing: border-box;
-			}
-			body {
-				margin: 0;
-			}
 			img,
 			svg {
 				display: block;
@@ -156,6 +150,16 @@
 				border: none;
 				cursor: pointer;
 				padding: 0;
+			}
+			.super {
+				padding: 24px;
+				height: calc(100dvh - 136px);
+			}
+			@media (max-width: 700px) {
+				.super {
+					padding: 16px;
+					height: calc(100dvh - 191.5px);
+				}
 			}
 			.button-primary {
 				background-color: #111111;
