@@ -1,2 +1,3 @@
-<h1>Hola diego</h1>
-<a href="/">Regresar</a>
+<form>
+  <input type="text">
+</form>
