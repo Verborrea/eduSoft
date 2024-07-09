@@ -109,12 +109,27 @@
 				--blue: #1982c4;
 				--gray: #f0f0f0;
 				--both: #989898;
+				--red: #FF595E;
+				--green: #8AC926;
+				--blue: #1982C4;
+				--purple: #6A4C93;
+				--yellow: #FFCA3A;
 
 				background-color: var(--back);
 				color: var(--text);
 				line-height: 24px;
 				color-scheme: only light;
 				counter-reset: preguntas;
+			}
+			.super {
+				padding: 24px;
+				height: calc(100dvh - 136px);
+			}
+			@media (max-width: 700px) {
+				.super {
+					padding: 16px;
+					height: calc(100dvh - 191.5px);
+				}
 			}
 			:root,
 			button,
