@@ -1,110 +1,193 @@
 <!doctype html>
-<html lang="en">
+<html lang="es-PE">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%sveltekit.head%
-		<link rel="preload" as="font" href="%sveltekit.assets%/fonts/BC-Bold.woff2" crossorigin>
-		<link rel="preload" as="font" href="%sveltekit.assets%/fonts/BC-BoldItalic.woff2" crossorigin>
-		<link rel="preload" as="font" href="%sveltekit.assets%/fonts/BC-Italic.woff2" crossorigin>
-		<link rel="preload" as="font" href="%sveltekit.assets%/fonts/BC-Medium.woff2" crossorigin>
-		<link rel="preload" as="font" href="%sveltekit.assets%/fonts/BC-MediumItalic.woff2" crossorigin>
-		<link rel="preload" as="font" href="%sveltekit.assets%/fonts/BC-Regular.woff2" crossorigin>
-		<link rel="preload" as="font" href="%sveltekit.assets%/fonts/BC-SemiBold.woff2" crossorigin>
-		<link rel="preload" as="font" href="%sveltekit.assets%/fonts/BC-SemiBoldItalic.woff2" crossorigin>
+		<link
+			rel="preload"
+			as="font"
+			href="%sveltekit.assets%/fonts/BC-Bold.woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			as="font"
+			href="%sveltekit.assets%/fonts/BC-BoldItalic.woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			as="font"
+			href="%sveltekit.assets%/fonts/BC-Italic.woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			as="font"
+			href="%sveltekit.assets%/fonts/BC-Medium.woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			as="font"
+			href="%sveltekit.assets%/fonts/BC-MediumItalic.woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			as="font"
+			href="%sveltekit.assets%/fonts/BC-Regular.woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			as="font"
+			href="%sveltekit.assets%/fonts/BC-SemiBold.woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			as="font"
+			href="%sveltekit.assets%/fonts/BC-SemiBoldItalic.woff2"
+			crossorigin
+		/>
 		<style>
-		@font-face {
-			font-family: 'BC';
-			src: url(%sveltekit.assets%/fonts/BC-Regular.woff2) format('woff2');
-			font-weight: normal;
-			font-style: normal;
-		}
-		@font-face {
-			font-family: 'BC';
-			src: url(%sveltekit.assets%/fonts/BC-Italic.woff2) format('woff2');
-			font-weight: normal;
-			font-style: italic;
-		}
-		@font-face {
-			font-family: 'BC';
-			src: url(%sveltekit.assets%/fonts/BC-Medium.woff2) format('woff2');
-			font-weight: 500;
-			font-style: normal;
-		}
-		@font-face {
-			font-family: 'BC';
-			src: url(%sveltekit.assets%/fonts/BC-MediumItalic.woff2) format('woff2');
-			font-weight: 500;
-			font-style: italic;
-		}
-		@font-face {
-			font-family: 'BC';
-			src: url(%sveltekit.assets%/fonts/BC-SemiBold.woff2) format('woff2');
-			font-weight: 600;
-			font-style: normal;
-		}
-		@font-face {
-			font-family: 'BC';
-			src: url(%sveltekit.assets%/fonts/BC-SemiBoldItalic.woff2) format('woff2');
-			font-weight: 600;
-			font-style: italic;
-		}
-		@font-face {
-			font-family: 'BC';
-			src: url(%sveltekit.assets%/fonts/BC-Bold.woff2) format('woff2');
-			font-weight: bold;
-			font-style: normal;
-		}
-		@font-face {
-			font-family: 'BC';
-			src: url(%sveltekit.assets%/fonts/BC-BoldItalic.woff2) format('woff2');
-			font-weight: bold;
-			font-style: italic;
-		}
-		:root {
-			--back: #fff;
-			--text: #2e2e2e;
-			--blue: #1982C4;
-			--gray: #F0F0F0;
+			@font-face {
+				font-family: "BC";
+				src: url(%sveltekit.assets%/fonts/BC-Regular.woff2) format("woff2");
+				font-weight: normal;
+				font-style: normal;
+			}
+			@font-face {
+				font-family: "BC";
+				src: url(%sveltekit.assets%/fonts/BC-Italic.woff2) format("woff2");
+				font-weight: normal;
+				font-style: italic;
+			}
+			@font-face {
+				font-family: "BC";
+				src: url(%sveltekit.assets%/fonts/BC-Medium.woff2) format("woff2");
+				font-weight: 500;
+				font-style: normal;
+			}
+			@font-face {
+				font-family: "BC";
+				src: url(%sveltekit.assets%/fonts/BC-MediumItalic.woff2) format("woff2");
+				font-weight: 500;
+				font-style: italic;
+			}
+			@font-face {
+				font-family: "BC";
+				src: url(%sveltekit.assets%/fonts/BC-SemiBold.woff2) format("woff2");
+				font-weight: 600;
+				font-style: normal;
+			}
+			@font-face {
+				font-family: "BC";
+				src: url(%sveltekit.assets%/fonts/BC-SemiBoldItalic.woff2)
+					format("woff2");
+				font-weight: 600;
+				font-style: italic;
+			}
+			@font-face {
+				font-family: "BC";
+				src: url(%sveltekit.assets%/fonts/BC-Bold.woff2) format("woff2");
+				font-weight: bold;
+				font-style: normal;
+			}
+			@font-face {
+				font-family: "BC";
+				src: url(%sveltekit.assets%/fonts/BC-BoldItalic.woff2) format("woff2");
+				font-weight: bold;
+				font-style: italic;
+			}
+			:root {
+				--back: #fff;
+				--text: #2e2e2e;
+				--blue: #1982c4;
+				--gray: #f0f0f0;
+				--both: #989898;
 
-			background-color: var(--back);
-			color: var(--text);
-			line-height: 24px;
-			color-scheme: only light;
-			counter-reset: preguntas;
-		}
-		:root, button, input, textarea, select {
-			font: 16px 'BC', sans-serif;
-		}
-		* {
-			box-sizing: border-box;
-		}
-		body {
-			margin: 0;
-		}
-		img, svg {
-			display: block;
-		}
-		button {
-			background: transparent;
-			border: none;
-			cursor: pointer;
-			padding: 0;
-		}
-		a:active, button:active {
-			transform: scale(0.95);
-		}
-		.fc {
-			display: flex;
-			align-items: center;
-		}
-		.logo {
-			font-size: 24px;
-			letter-spacing: -0.024em;
-			font-weight: 600;
-			margin: 0;
-		}
+				background-color: var(--back);
+				color: var(--text);
+				line-height: 24px;
+				color-scheme: only light;
+				counter-reset: preguntas;
+			}
+			:root,
+			button,
+			input,
+			textarea,
+			select {
+				font:
+					16px "BC",
+					sans-serif;
+				font-weight: 500;
+			}
+			* {
+				box-sizing: border-box;
+			}
+			body {
+				margin: 0;
+			}
+			img,
+			svg {
+				display: block;
+			}
+			button {
+				background: transparent;
+				border: none;
+				cursor: pointer;
+				padding: 0;
+			}
+			.button-primary {
+				background-color: #111111;
+				border-radius: 16px;
+				color: var(--back);
+				padding: 10px 24px;
+			}
+			a:active,
+			button:active {
+				transform: scale(0.95);
+			}
+			.rel {
+				position: relative;
+			}
+			.abs {
+				position: absolute;
+			}
+			.fc {
+				display: flex;
+				align-items: center;
+			}
+			.fcol16 {
+				display: flex;
+				flex-direction: column;
+				gap: 16px;
+			}
+			.logo {
+				font-size: 24px;
+				letter-spacing: -0.024em;
+				font-weight: 600;
+				margin: 0;
+			}
+			.div-input {
+				display: flex;
+				flex-direction: row;
+				gap: 8px;
+				align-items: center;
+				border-radius: 16px;
+				outline: none;
+				padding: 10px 16px;
+				background-color: var(--gray);
+			}
+			.div-input > input {
+				background: none;
+				outline: none;
+				border: none;
+			}
 		</style>
 	</head>
 	<body data-sveltekit-preload-data="hover">
