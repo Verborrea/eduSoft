@@ -1,0 +1,66 @@
+<script>
+	export let index, unit
+</script>
+
+<article class="fcol16">
+	<h1>Unidad {index}: {unit.name}</h1>
+	{#each unit.themes as theme, i}
+	<section class="fcol16">
+		<h2>Tema {i + 1}: {theme.name}</h2>
+		{#if theme.text}
+			<p>{theme.text}</p>
+		{/if}
+		{#each theme.files ?? [] as file}
+			<a class="fc outline" href={file.href} download>
+				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M6 14H12V12.5H6V14ZM6 10.75H14V9.25H6V10.75ZM6 7.5H14V6H6V7.5ZM4.5 17C4.0875 17 3.73437 16.8531 3.44062 16.5594C3.14687 16.2656 3 15.9125 3 15.5V4.5C3 4.0875 3.14687 3.73438 3.44062 3.44063C3.73437 3.14688 4.0875 3 4.5 3H15.5C15.9125 3 16.2656 3.14688 16.5594 3.44063C16.8531 3.73438 17 4.0875 17 4.5V15.5C17 15.9125 16.8531 16.2656 16.5594 16.5594C16.2656 16.8531 15.9125 17 15.5 17H4.5ZM4.5 15.5H15.5V4.5H4.5V15.5Z" fill="#2E2E2E"/>
+				</svg>
+				<span>{file.name}</span>
+			</a>
+		{/each}
+	</section>
+	{/each}
+</article>
+
+<style>
+	article {
+		flex-shrink: 0;
+		width: 100%;
+		max-width: 840px;
+		border: 1px solid var(--gray);
+		border-radius: 16px;
+		padding: 24px 48px;
+		gap: 24px;
+		align-self: stretch;
+		height: 100%;
+		overflow-y: scroll;
+	}
+	section {
+		gap: 8px;
+	}
+	h1 {
+		text-align: center;
+	}
+	h1, h2, p {
+		margin: 0;
+	}
+	h2 {
+		font-size: 20px;
+    	font-weight: 500;
+	}
+	p {
+		font-weight: 400;
+	}
+	a[download] {
+		text-decoration: none;
+		color: var(--text);
+		padding: 10px;
+		gap: 12px;
+		border-radius: 12px;
+	}
+	@media (max-width: 700px) {
+		article {
+			padding: 16px;
+		}
+	}
+</style>

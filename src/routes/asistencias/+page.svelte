@@ -1,3 +1,7 @@
+<svelte:head>
+  <title>eduSoft | Asistencias</title>
+</svelte:head>
+
 <main class="super">
   <h1>Asistencias</h1>
 </main>
