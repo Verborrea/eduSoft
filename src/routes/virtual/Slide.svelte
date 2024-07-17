@@ -23,6 +23,11 @@
 </article>
 
 <style>
+	@property --var1 {
+		syntax: "<color>";
+		inherits: true;
+		initial-value: white;
+	}
 	article {
 		scroll-snap-align: center;
 		flex-shrink: 0;
@@ -35,6 +40,18 @@
 		align-self: stretch;
 		height: 100%;
 		overflow-y: scroll;
+		transition: --var1 .5s;
+	}
+	article:hover {
+		--var1: #989898ab;
+	}
+	article::-webkit-scrollbar {
+		background: white;
+		width: 8px;
+	}
+	article::-webkit-scrollbar-thumb {
+		background-color: var(--var1);
+		border-radius: 15px;
 	}
 	section {
 		gap: 8px;

@@ -114,6 +114,16 @@
 		gap: 24px;
 		height: 100%;
 	}
+	.slides::-webkit-scrollbar {
+		height: 8px;
+	}
+	.slides::-webkit-scrollbar-track {
+		border-radius: 8px;
+	}
+	.slides::-webkit-scrollbar-thumb {
+		background-color: #989898ab;
+		border-radius: 15px;
+	}
 	nav a {
 		text-decoration: none;
 		color: var(--inactive);
