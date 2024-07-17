@@ -107,14 +107,15 @@
 				--back: #fff;
 				--text: #2e2e2e;
 				--blue: #1982c4;
-				--gray: #f0f0f0;
-				--both: #989898;
-				--inactive: #CFCFCF;
+				--gray: #f0f0f0;		/* usados para inputs y botones */
+				--both: #989898;		/* usar en textos */
+				--inactive: #CFCFCF;	/* indica disabled o inactive */
 				--red: #FF595E;
 				--green: #8AC926;
 				--blue: #1982C4;
 				--purple: #6A4C93;
 				--yellow: #FFCA3A;
+				--outline: #1982c442;
 
 				background-color: var(--back);
 				color: var(--text);
@@ -150,6 +151,16 @@
 				border: none;
 				cursor: pointer;
 				padding: 0;
+				outline-color: var(--outline);
+				transition: outline 0.2s ease;
+			}
+			a {
+				color: var(--text);
+				text-decoration: none;
+				outline-color: var(--outline);
+			}
+			a:hover {
+				text-decoration: underline;
 			}
 			.super {
 				padding: 24px;
@@ -204,15 +215,48 @@
 				gap: 8px;
 				align-items: center;
 				border-radius: 16px;
-				outline: none;
 				padding: 10px 16px;
 				background-color: var(--gray);
+				transition: outline 0.2s ease;
+			}
+			.focus-visible, .div-input {
+				outline-color: var(--outline);
+			}
+			.div-input:has(input:focus),
+			.focus-visible:focus {
+				outline: 4px solid var(--outline);
 			}
 			.div-input > input {
+				flex: 1;
 				background: none;
 				outline: none;
 				border: none;
 			}
+			::-ms-reveal {
+				display: none;
+			}
+			::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+				color: var(--both);
+			}
+			:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+				color: var(--both);
+				opacity:  1;
+			}
+			::-moz-placeholder { /* Mozilla Firefox 19+ */
+				color: var(--both);
+				opacity:  1;
+			}
+			:-ms-input-placeholder { /* Internet Explorer 10-11 */
+				color: var(--both);
+			}
+			::-ms-input-placeholder { /* Microsoft Edge */
+				color: var(--both);
+			}
+
+			::placeholder { /* Most modern browsers support this now. */
+				color: var(--both);
+			}
+
 		</style>
 	</head>
 	<body data-sveltekit-preload-data="hover">

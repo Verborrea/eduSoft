@@ -50,6 +50,7 @@
 		padding: 10px 24px;
 		padding-right: 52px;
 		color: var(--text);
+		outline-color: var(--outline);
 	}
 	.wrapper::after {
 		content: "";
