@@ -43,16 +43,19 @@
 
 <style>
   main {
-    gap: 24px;
+    gap: 32px;
     flex-direction: column;
     justify-content: center;
   }
   h1, h2 {
     margin: 0;
   }
+  h1 {
+    font-size: 42px;
+  }
   h2 {
-    font-weight: 400;
-    color: var(--both);
+    font-weight: 500;
+    color: var(--inactive);
   }
   .top {
     align-items: center;
@@ -63,6 +66,9 @@
     gap: 24px;
   }
   @media (max-width: 700px) {
+    h1 {
+      font-size: 32px;
+    }
     .links {
       align-self: stretch;
       flex-direction: column;

@@ -107,15 +107,21 @@
 			:root {
 				--back: #fff;
 				--text: #2e2e2e;
+				--primary: #111;
 				--blue: #1982c4;
+				--gray-light: #f5f5f5;
 				--gray: #f0f0f0;		/* usados para inputs y botones */
+				--gray-dark: #e7e7e7;
 				--both: #989898;		/* usar en textos */
 				--inactive: #CFCFCF;	/* indica disabled o inactive */
 				--red: #FF595E;
+				--red-dark: hsl(358, 100%, 47%);
 				--green: #8AC926;
+				--green-dark: hsl(83, 68%, 37%);
 				--blue: #1982C4;
 				--purple: #6A4C93;
 				--yellow: #FFCA3A;
+				--yellow-dark: hsl(44, 100%, 45%);
 				--outline: #1982c442;
 
 				background-color: var(--back);
@@ -164,6 +170,13 @@
 			a:hover {
 				text-decoration: underline;
 			}
+			p {
+				font-weight: 400;
+			}
+			a:active,
+			button:active {
+				transform: scale(0.95);
+			}
 			.super {
 				padding: 24px;
 				height: calc(100dvh - 136px);
@@ -171,25 +184,60 @@
 			@media (max-width: 700px) {
 				.super {
 					padding: 16px;
+					gap: 16px;
 					height: calc(100dvh - 191.5px);
 				}
 			}
-			.button-primary {
-				background-color: #111111;
+			.btn {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+			}
+			.btn-primary {
+				background-color: var(--primary);
 				border-radius: 16px;
 				color: var(--back);
 				padding: 10px 24px;
 			}
-			.outline {
-				border: 2px solid var(--gray);
+			.btn-primary:hover {
+				background-color: var(--text);
 			}
-			.outline:hover {
+			.btn-secondary {
+				background-color: var(--gray);
+				border-radius: 16px;
+				padding: 10px 24px;
+			}
+			.btn-secondary:hover {
+				background-color: var(--gray-dark);
+			}
+			.btn-outline {
+				border: 2px solid var(--gray);
+				padding: 8px 22px;
+				border-radius: 16px;
+			}
+			.btn-outline:hover {
 				background: var(--gray);
 			}
-			a:active,
-			button:active {
-				transform: scale(0.95);
+			/* ================= Colores ================= */
+			.green {
+				background: var(--green);
 			}
+			.green:hover {
+				background: var(--green-dark);
+			}
+			.red {
+				background: var(--red);
+			}
+			.red:hover {
+				background: var(--red-dark);
+			}
+			.yellow {
+				background: var(--yellow);
+			}
+			.yellow:hover {
+				background: var(--yellow-dark);
+			}
+			/* ================= Clases útiles ================= */
 			.rel {
 				position: relative;
 			}
@@ -199,6 +247,9 @@
 			.fc {
 				display: flex;
 				align-items: center;
+			}
+			.justify-between {
+				justify-content: space-between
 			}
 			.fcol16 {
 				display: flex;

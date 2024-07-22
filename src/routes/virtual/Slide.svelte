@@ -82,7 +82,6 @@
 	}
 	p {
 		font-size: 18px;
-		font-weight: 400;
 	}
 	button {
 		cursor: zoom-in;

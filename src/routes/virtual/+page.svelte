@@ -91,7 +91,7 @@
 </svelte:head>
 
 <main class="super">
-	<h1>Aula Virtual</h1>
+	<!-- <h1>Aula Virtual</h1> -->
 	<div class="overflow-container">
 		<div class="slides" on:scroll={(e) => setActive(e.target)}>
 			{#each units as unit, index}
@@ -114,10 +114,6 @@
 		flex-direction: column;
 		align-items: center;
 		gap: 24px;
-	}
-	h1 {
-		margin: 0;
-		color: var(--yellow);
 	}
 	.overflow-container {
 		flex: 1;

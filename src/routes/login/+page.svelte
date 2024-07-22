@@ -41,7 +41,7 @@
           {/if}
         </button>
       </label>
-      <button type="submit" class="button-primary focus-visible">Ingresar</button>
+      <button type="submit" class="btn btn-primary focus-visible">Ingresar</button>
       <a href="/login">He olvidado mi contraseña</a>
       <span>&copy; 2024 eduSoft</span>
     </form>
