@@ -11,6 +11,24 @@
 					files: [
 						{ name: 'Lectura 1', href: 'link/to/your/download/file' },
 						{ name: 'Lectura 2', href: 'link/to/your/download/file' }
+					],
+					images: [
+						'https://art.pixilart.com/4b680819d6447f3.gif'
+					]
+				},
+				{
+					name: 'Economía y Sociedad en la República',
+					text: 'Esta unidad explora la evolución económica y social del Perú durante la época republicana. Desde la importancia inicial de la minería hasta la diversificación económica posterior.',
+					images: [
+						'https://www.publicdomainpictures.net/pictures/130000/velka/keep-calm-and-carry-on-1441446793oby.jpg'
+					]
+				},
+				{
+					name: 'Independencia y Consolidación Republicana',
+					text: 'Esta unidad explora los eventos y procesos clave que marcaron el inicio y los primeros años de la República del Perú, desde el movimiento independentista liderado por figuras como José de San Martín y Simón Bolívar, hasta la formación de nuevas estructuras políticas, económicas y sociales.',
+					files: [
+						{ name: 'Lectura 1', href: 'link/to/your/download/file' },
+						{ name: 'Lectura 2', href: 'link/to/your/download/file' }
 					]
 				},
 				{

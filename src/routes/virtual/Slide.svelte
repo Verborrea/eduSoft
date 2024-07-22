@@ -1,5 +1,9 @@
-<script>
+<script lang="ts">
 	export let index, unit
+
+	function toggleImage(btn: HTMLButtonElement) {
+		btn.classList.toggle('focus')
+	}
 </script>
 
 <article id="unit{index}" class="fcol16">
@@ -10,6 +14,11 @@
 		{#if theme.text}
 			<p>{theme.text}</p>
 		{/if}
+		{#each theme.images ?? [] as image}
+			<button type="button" on:click={e => toggleImage(e.currentTarget)}>
+				<img src={image} alt={theme.name}>
+			</button>
+		{/each}
 		{#each theme.files ?? [] as file}
 			<a class="fc outline" href={file.href} download>
 				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,28 +55,52 @@
 		--var1: #989898ab;
 	}
 	article::-webkit-scrollbar {
-		background: white;
 		width: 8px;
+	}
+	article::-webkit-scrollbar-track {
+		border-radius: 8px;
+		margin-block: 8px;
+		background: white;
 	}
 	article::-webkit-scrollbar-thumb {
 		background-color: var(--var1);
 		border-radius: 15px;
 	}
 	section {
-		gap: 8px;
-	}
-	h1 {
-		text-align: center;
+		gap: 12px;
 	}
 	h1, h2, p {
 		margin: 0;
 	}
+	h1 {
+		font-size: 42px;
+		text-align: center;
+	}
 	h2 {
-		font-size: 20px;
-    	font-weight: 500;
+		font-size: 22px;
+		font-weight: 500;
 	}
 	p {
+		font-size: 18px;
 		font-weight: 400;
+	}
+	button {
+		cursor: zoom-in;
+	}
+	:global(button.focus) {
+		position: fixed;
+		inset: 0;
+		background: #ffffffe0;
+		cursor: zoom-out;
+	}
+	img {
+		width: 100%;
+		border-radius: 8px;
+	}
+	:global(button.focus img) {
+		border-radius: 0;
+		height: 100%;
+		object-fit: contain;
 	}
 	a[download] {
 		text-decoration: none;
@@ -78,7 +111,18 @@
 	}
 	@media (max-width: 700px) {
 		article {
-			padding: 16px;
+			padding: 0;
+			border-radius: 0;
+			border: none;
+		}
+		h1 {
+			font-size: 32px;
+		}
+		h2 {
+			font-size: 20px;
+		}
+		p {
+			font-size: 16px;
 		}
 	}
 </style>
