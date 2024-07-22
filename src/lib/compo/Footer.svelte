@@ -74,11 +74,4 @@
 			justify-content: space-evenly;
 		}
 	}
-	/*&copy; 2024 eduSoft
-	footer {
-		color: var(--both);
-		padding: 24px;
-		text-align: center;
-		line-height: 16px;
-	}*/
 </style>
