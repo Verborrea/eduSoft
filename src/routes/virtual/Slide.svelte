@@ -87,6 +87,9 @@
 	button {
 		cursor: zoom-in;
 	}
+	button:active {
+		transform: scale(1) !important;
+	}
 	:global(button.focus) {
 		position: fixed;
 		inset: 0;

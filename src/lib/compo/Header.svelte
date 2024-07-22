@@ -15,9 +15,9 @@
 	</div>
 	<div class="abs wrapper">
 		<select id="course" name="course" title="Curso">
-			<option>Matemática</option>
-			<option>Ciencias Sociales</option>
-			<option>Lenguas</option>
+			<option>Matemática CCOMP2-1</option>
+			<option>Ciencias Sociales CCOMP2-1</option>
+			<option>Lenguas CCOMP2-1</option>
 		</select>
 	</div>
 </header>
