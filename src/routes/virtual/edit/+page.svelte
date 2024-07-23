@@ -19,15 +19,15 @@
 	function addUnit() {
 		units = [...units, {
 			id: generateTimestampID(),
-			name: 'Nueva Unidad',
+			name: 'Unidad sin nombre',
 			themes: []
 		}]
 		setTimeout(() => {
 			const newElement = document.getElementById(`unit${units.length}`)
 			if (newElement) {
 				newElement.scrollIntoView({ behavior: 'smooth' })
-				gotoUnit(units.length - 1)
 			}
+			gotoUnit(units.length - 1)
 		}, 100)
 	}
 

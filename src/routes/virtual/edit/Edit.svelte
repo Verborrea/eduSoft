@@ -1,30 +1,49 @@
 <script lang="ts">
-	let hidden = true
+	import { hiddenEditModal, themename } from '$lib/stores'
 
 	function closeModal() {
-		hidden = true
+		$hiddenEditModal = true
 	}
+
 </script>
 
-<form class="fcol16" method="get" class:hidden={hidden}>
-	<input type="text">
-	<div class="fc btns">
-		<button type="button" class="btn btn-secondary" on:click={closeModal}>Cancelar</button>
-		<button type="button" class="btn btn-primary" on:click={closeModal}>Guardar</button>
-	</div>
-</form>
+<article class="fc" class:hidden={$hiddenEditModal}>
+	<form class="fcol16" method="get">
+		<label for="name">Nombre:</label>
+		<input type="text" class="focus-visible" id="name" name="name" bind:value={$themename}>
+		<div class="fc btns">
+			<button type="button" class="btn btn-secondary" on:click={closeModal}>Cancelar</button>
+			<button type="button" class="btn btn-primary">Guardar</button>
+		</div>
+	</form>
+</article>
 
 <style>
 	.btns {
 		gap: 8px;
 	}
-	form {
-		padding: 16px;
+	article {	
 		position: fixed;
 		inset: 0;
 		background: #ffffffe0;
+		justify-content: center;
 	}
-	form.hidden {
+	article.hidden {
 		display: none;
+	}
+	form {
+		width: 100%;
+		max-width: 900px;
+		padding: 16px;
+		justify-content: center;
+	}
+	input {
+		background: var(--gray-light);
+		padding: 10px 16px;
+		border-radius: 8px;
+		border: none;
+	}
+	input:hover {
+		background: var(--gray-dark);
 	}
 </style>

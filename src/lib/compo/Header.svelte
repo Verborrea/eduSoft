@@ -14,7 +14,7 @@
 		</button>
 	</div>
 	<div class="abs wrapper">
-		<select id="course" name="course" title="Curso">
+		<select id="course" class="focus-visible" name="course" title="Curso">
 			<option>Matemática CCOMP2-1</option>
 			<option>Ciencias Sociales CCOMP2-1</option>
 			<option>Lenguas CCOMP2-1</option>

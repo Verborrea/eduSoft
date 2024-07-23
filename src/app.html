@@ -181,13 +181,7 @@
 				padding: 24px;
 				height: calc(100dvh - 136px);
 			}
-			@media (max-width: 700px) {
-				.super {
-					padding: 16px;
-					gap: 16px;
-					height: calc(100dvh - 191.5px);
-				}
-			}
+			/* ============== Botones ============== */
 			.btn {
 				display: flex;
 				align-items: center;
@@ -217,6 +211,12 @@
 			}
 			.btn-outline:hover {
 				background: var(--gray);
+			}
+			.btn.green, .btn.red {
+				padding: 10px 24px;
+				border-radius: 8px;
+				color: var(--back);
+				justify-content: center;
 			}
 			/* ================= Colores ================= */
 			.green {
@@ -288,28 +288,28 @@
 			::-ms-reveal {
 				display: none;
 			}
-			::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-				color: var(--both);
-			}
-			:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+			::-webkit-input-placeholder { color: var(--both) }
+			:-moz-placeholder {
 				color: var(--both);
 				opacity:  1;
 			}
-			::-moz-placeholder { /* Mozilla Firefox 19+ */
+			::-moz-placeholder {
 				color: var(--both);
 				opacity:  1;
 			}
-			:-ms-input-placeholder { /* Internet Explorer 10-11 */
-				color: var(--both);
+			:-ms-input-placeholder { color: var(--both) }
+			::-ms-input-placeholder { color: var(--both) }
+			::placeholder { color: var(--both) }
+			@media (max-width: 700px) {
+				.super {
+					padding: 16px;
+					gap: 16px !important;
+					height: calc(100dvh - 191.5px);
+				}
+				.focus-visible:focus {
+					outline: none;
+				}
 			}
-			::-ms-input-placeholder { /* Microsoft Edge */
-				color: var(--both);
-			}
-
-			::placeholder { /* Most modern browsers support this now. */
-				color: var(--both);
-			}
-
 		</style>
 	</head>
 	<body data-sveltekit-preload-data="hover">
