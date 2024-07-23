@@ -1,45 +1,38 @@
 <script lang="ts">
-	import Slide from './Slide.svelte'
+	import { generateTimestampID } from '$lib/utils'
+	import Unit from './Unit.svelte'
 
-	let units = [
-		{
-			name: 'Realidad Peruana en la época republicana',
-			themes: [
-				{
-					name: 'Independencia y Consolidación Republicana',
-					
-				},
-				{
-					name: 'Economía y Sociedad en la República',
-				},
-				{
-					name: 'El Imperio Español y su influencia',
-				},
-				{
-					name: 'Notas sobre la Causa de la Independencia',
-				}
-			]
-		},
-		{
-			name: 'Diversidad del país',
-			themes: [
-				{
-					name: 'Tema con solo documentos',
-				}
-			]
-		},
-		{
-			name: 'Diversidad del país',
-			themes: [
-				{
-					name: 'Tema con solo documentos',
-				},
-				{
-					name: 'Patrimonio Cultural',
-				}
-			]
-		}
-	]
+	interface Theme {
+		id: string;
+		name: string;
+	}
+
+	interface Unit {
+		id: string;
+		name: string;
+		themes: Theme[];
+	}
+
+	let units: Unit[] = []
+
+	function addUnit() {
+		units = [...units, {
+			id: generateTimestampID(),
+			name: 'Nueva Unidad',
+			themes: []
+		}]
+		setTimeout(() => {
+			const newElement = document.getElementById(`unit${units.length}`);
+			if (newElement) {
+				newElement.scrollIntoView({ behavior: 'smooth' });
+				gotoUnit(units.length - 1);
+			}
+		}, 100)
+	}
+
+	function deleteUnit(event: any) {
+		units = units.filter((u: any) => u.id !== event.detail.id)
+	}
 
 	let active = 0
 
@@ -60,13 +53,6 @@
 				active = Math.round(ratio * num_elements);
 			}
 		}
-	}
-
-	function addUnit() {
-		units = [...units, {
-			name: 'Nueva Unidad',
-			themes: []
-		}]
 	}
 </script>
 
@@ -92,12 +78,16 @@
 			</button>
 		</div>
 	</header>
-	<div class="overflow-container">
+	<div class="overflow-container" class:empty={units.length === 0}>
+		{#if units.length > 0}
 		<div class="slides" on:scroll={(e) => setActive(e.target)}>
-			{#each units as unit, index}
-				<Slide index={index + 1} {unit}/>
-			{/each}
+		{#each units as unit, index}
+		<Unit index={index + 1} {unit} on:delete={deleteUnit}/>
+		{/each}
 		</div>
+		{:else}
+		<h2>Haga click en + para crear una nueva unidad</h2>
+		{/if}
 	</div>
 	<nav class="fc">
 		{#each { length: units.length} as _, index}
@@ -133,6 +123,14 @@
 		max-width: 900px;
 		overflow-y: hidden;
 	}
+	.overflow-container.empty {
+		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--both);
+		font-weight: 500;
+	}
 	.slides {
 		scroll-snap-type: x mandatory;
 		overflow-x: scroll;
@@ -152,6 +150,8 @@
 	}
 	nav {
 		gap: 8px;
+		flex-wrap: wrap;
+    	justify-content: center;
 	}
 	nav * {
 		text-decoration: none;
