@@ -99,7 +99,7 @@
 			{/each}
 		</div>
 	</div>
-	<nav>
+	<nav class="fc">
 		{#each { length: units.length} as _, index}
 			<a href="#unit{index + 1}" class:active={active == index} on:click={()=>{gotoUnit(index)}}>
 				{index + 1}
@@ -138,20 +138,21 @@
 		background-color: #989898ab;
 		border-radius: 15px;
 	}
+	nav {
+		gap: 8px;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
 	nav a {
 		text-decoration: none;
 		color: var(--inactive);
 		font-size: 24px;
 		padding: 0 8px;
-    	margin: 0 8px;
 	}
 	nav a.active {
 		color: var(--text);
 	}
 	@media (max-width: 700px) {
-		h1 {
-			display: none;
-		}
 		nav a {
 			font-size: 20px;
 		}

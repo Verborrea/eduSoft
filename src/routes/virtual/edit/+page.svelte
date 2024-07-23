@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { generateTimestampID } from '$lib/utils'
 	import Unit from './Unit.svelte'
+	import Edit from './Edit.svelte'
 
 	interface Theme {
 		id: string;
@@ -22,10 +23,10 @@
 			themes: []
 		}]
 		setTimeout(() => {
-			const newElement = document.getElementById(`unit${units.length}`);
+			const newElement = document.getElementById(`unit${units.length}`)
 			if (newElement) {
-				newElement.scrollIntoView({ behavior: 'smooth' });
-				gotoUnit(units.length - 1);
+				newElement.scrollIntoView({ behavior: 'smooth' })
+				gotoUnit(units.length - 1)
 			}
 		}, 100)
 	}
@@ -60,6 +61,7 @@
   	<title>eduSoft | Aula Virtual</title>
 </svelte:head>
 
+<Edit/>
 <main class="super">
 	<header class="fc justify-between">
 		<h1>Aula Virtual</h1>
@@ -81,9 +83,9 @@
 	<div class="overflow-container" class:empty={units.length === 0}>
 		{#if units.length > 0}
 		<div class="slides" on:scroll={(e) => setActive(e.target)}>
-		{#each units as unit, index}
-		<Unit index={index + 1} {unit} on:delete={deleteUnit}/>
-		{/each}
+			{#each units as unit, index}
+			<Unit index={index + 1} {unit} on:delete={deleteUnit}/>
+			{/each}
 		</div>
 		{:else}
 		<h2>Haga click en + para crear una nueva unidad</h2>
@@ -151,7 +153,7 @@
 	nav {
 		gap: 8px;
 		flex-wrap: wrap;
-    	justify-content: center;
+		justify-content: center;
 	}
 	nav * {
 		text-decoration: none;
