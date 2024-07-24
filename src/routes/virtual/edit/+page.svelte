@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { generateTimestampID } from '$lib/utils'
 	import Unit from './Unit.svelte'
-	import Edit from './Edit.svelte'
 
 	interface Theme {
 		id: string;
@@ -61,7 +60,6 @@
   	<title>eduSoft | Aula Virtual</title>
 </svelte:head>
 
-<Edit/>
 <main class="super">
 	<header class="fc justify-between">
 		<h1>Aula Virtual</h1>
