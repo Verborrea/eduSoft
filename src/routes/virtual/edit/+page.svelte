@@ -2,9 +2,12 @@
 	import { generateTimestampID } from '$lib/utils'
 	import Unit from './Unit.svelte'
 
+	export let data
+
 	interface Theme {
 		id: string;
 		name: string;
+		text: string;
 	}
 
 	interface Unit {
@@ -13,7 +16,7 @@
 		themes: Theme[];
 	}
 
-	let units: Unit[] = []
+	let units: Unit[] = JSON.parse(JSON.stringify(data.units))
 
 	function addUnit() {
 		units = [...units, {
@@ -41,11 +44,12 @@
 	}
 
 	function setActive(target: EventTarget | null) {
+		console.log('llamando')
 		if (target instanceof HTMLElement) {
 			let num_elements = units.length - 1;
 			let total = target.scrollWidth - target.clientWidth;
 			let ratio = target.scrollLeft / total;
-			if (ratio === 0) {
+			if (isNaN(ratio) || ratio === 0) {
 				active = 0;
 			} else if (ratio === 1) {
 				active = num_elements;
@@ -53,6 +57,11 @@
 				active = Math.round(ratio * num_elements);
 			}
 		}
+	}
+
+	function resetUnits() {
+		units = JSON.parse(JSON.stringify(data.units))
+		console.log(data.units)
 	}
 </script>
 
@@ -64,7 +73,7 @@
 	<header class="fc justify-between">
 		<h1>Aula Virtual</h1>
 		<div class="fc btns">
-			<button type="button" class="btn btn-secondary">
+			<button type="button" class="btn btn-secondary" on:click={resetUnits}>
 				<span>Deshacer cambios</span>
 				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M6 16V14.5H12C12.6944 14.5 13.2847 14.2569 13.7708 13.7708C14.2569 13.2847 14.5 12.6944 14.5 12C14.5 11.3056 14.2569 10.7153 13.7708 10.2292C13.2847 9.74306 12.6944 9.5 12 9.5H6.875L8.8125 11.4375L7.75 12.5L4 8.75L7.75 5L8.8125 6.0625L6.875 8H12C13.1111 8 14.0556 8.38889 14.8333 9.16667C15.6111 9.94444 16 10.8889 16 12C16 13.1111 15.6111 14.0556 14.8333 14.8333C14.0556 15.6111 13.1111 16 12 16H6Z" fill="#111111"/>

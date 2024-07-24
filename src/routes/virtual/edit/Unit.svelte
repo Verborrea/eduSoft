@@ -4,19 +4,34 @@
 	import { fly } from 'svelte/transition'
 	import { flip } from 'svelte/animate'
 
-	export let index, unit : any
+	interface Theme {
+		id: string;
+		name: string;
+		text: string;
+	}
+
+	interface Unit {
+		id: string;
+		name: string;
+		themes: Theme[];
+	}
+
+	export let index, unit : Unit
 
 	let editModal: any
 	let newThemeName = ''
+
+	let currentTheme: Theme
 	let editingThemeName: string
-	let currentTheme: any
+	let editingThemeText: string
 
 	const dispatch = createEventDispatcher()
 
 	function addTheme() {
 		unit.themes = [...unit.themes, {
 			id: generateTimestampID(),
-			name: newThemeName === '' ? 'Tema sin nombre' : newThemeName
+			name: newThemeName === '' ? 'Tema sin nombre' : newThemeName,
+			text: ''
 		}]
 		newThemeName = ''
 	}
@@ -25,7 +40,7 @@
 		e.parentElement?.classList.add('removed')
 		setTimeout(() => {
 			unit.themes = unit.themes.filter((t: any) => t.id !== id)
-		}, 200)
+		}, 100)
 	}
 
 	function deleteUnit() {
@@ -34,46 +49,69 @@
 		})
 	}
 
-	function openModal(theme: any) {
+	function openModal(theme: Theme) {
 		editingThemeName = theme.name
+		editingThemeText = theme.text
 		editModal.showModal()
 		currentTheme = theme
 	}
 
 	function editTheme() {
-		console.log(currentTheme.name)
 		unit.themes = unit.themes.map((t: any) => {
 			if (t.id === currentTheme.id) {
-				console.log(t.name)
-				return { ...t, name: editingThemeName }
+				return {
+					id: t.id,
+					name: editingThemeName,
+					text: editingThemeText
+				}
 			}
 			return t
 		})
-		console.log(unit.themes)
 		closeModal()
 	}
 
 	function closeModal() {
 		editingThemeName = ''
+		editingThemeText = ''
 		editModal.close()
 	}
 </script>
 
 <dialog bind:this={editModal}>
 	<form class="fcol16" action="">
-		<h1>Editar Tema</h1>
+		<h1>Editar {editingThemeName}</h1>
 		<div class="input-field fcol16">
 			<label for="theme-name">Nombre:</label>
 			<input
+				class="focus-visible"
 				id="theme-name"
 				type="text"
 				bind:value={editingThemeName}
 				placeholder="Nombre del Tema"
 			>
 		</div>
+		<div class="input-field fcol16">
+			<label for="theme-text">Contenido:</label>
+			<textarea
+				class="focus-visible"
+				id="theme-text"
+				rows="4"
+				bind:value={editingThemeText}
+				placeholder="Contenido"
+			/>
+		</div>
 		<div class="btns fc">
-			<button type="button" class="btn btn-secondary" on:click={closeModal}>Cancelar</button>
-			<button type="submit" class="btn btn-primary" on:click={editTheme}>Guardar</button>
+			<button type="button" class="btn btn-secondary focus-visible" on:click={closeModal}>
+				Cancelar
+			</button>
+			<button
+				type="submit"
+				class="btn btn-primary focus-visible"
+				on:click={editTheme}
+				disabled={editingThemeName === ''}
+			>
+				Guardar
+			</button>
 		</div>
 	</form>
 </dialog>
@@ -137,8 +175,8 @@
 	dialog {
 		border-radius: 16px;
 		border: none;
-		width: 100%;
-    max-width: 700px;
+		width: calc(100% - 32px);
+    	max-width: 700px;
 	}
 	@property --var1 {
 		syntax: "<color>";
@@ -149,7 +187,7 @@
 		scroll-snap-align: center;
 		flex-shrink: 0;
 		width: 100%;
-		max-width: 840px;
+		max-width: 900px;
 		border: 1px solid var(--gray);
 		border-radius: 16px;
 		padding: 24px 48px;
@@ -177,14 +215,14 @@
 	h1, section, header {
 		gap: 12px;
 	}
-	input {
+	input, textarea {
 		flex: 1;
 		background: var(--gray-light);
 		padding: 10px 16px;
 		border-radius: 8px;
 		border: none;
 	}
-	input:hover {
+	input:hover, textarea:hover {
 		background: var(--gray-dark);
 	}
 	.theme {
@@ -192,7 +230,7 @@
 		padding: 8px 16px;
 		border-radius: 8px;
 		gap: 8px;
-		transition: scale 200ms, opacity 200ms;
+		transition: scale 100ms, opacity 100ms;
 	}
 	:global(.theme.removed) {
 		scale: 0;

@@ -41,7 +41,7 @@
 		scroll-snap-align: center;
 		flex-shrink: 0;
 		width: 100%;
-		max-width: 840px;
+		max-width: 900px;
 		border: 1px solid var(--gray);
 		border-radius: 16px;
 		padding: 24px 48px;
