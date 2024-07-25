@@ -1,8 +1,33 @@
 <script lang="ts">
-	export let index, unit
+	import { onMount } from 'svelte';
+
+	export let index;
+	export let unit;
+
+	let focusedButton: HTMLButtonElement | null = null;
+
+	onMount(() => {
+		window.addEventListener('popstate', handlePopState);
+
+		return () => {
+			window.removeEventListener('popstate', handlePopState);
+		};
+	});
 
 	function toggleImage(btn: HTMLButtonElement) {
-		btn.classList.toggle('focus')
+		if (btn.classList.toggle('focus')) {
+			history.pushState('', '', '?visible-image');
+			focusedButton = btn;
+		} else {
+			history.back();
+		}
+	}
+
+	function handlePopState() {
+		if (focusedButton) {
+			focusedButton.classList.remove('focus');
+			focusedButton = null;
+		}
 	}
 </script>
 
