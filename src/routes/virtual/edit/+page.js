@@ -6,7 +6,11 @@ export async function load() {
 		themes: [{
 			id: '1',
 			name: 'La Independencia del Perú',
-			text: 'Este es un texto relativamente largo, con saltos de línea y demas.\nAquí hay uno.'
+			text: 'Este es un texto relativamente largo, con saltos de línea y demas.\nAquí hay uno.',
+			images: [
+				'https://art.pixilart.com/4b680819d6447f3.gif',
+				'https://www.publicdomainpictures.net/pictures/130000/velka/keep-calm-and-carry-on-1441446793oby.jpg'
+			]
 		}]
 	}]
 	return { units }

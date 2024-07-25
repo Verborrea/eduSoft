@@ -8,6 +8,7 @@
 		id: string;
 		name: string;
 		text: string;
+		images: string[];
 	}
 
 	interface Unit {
@@ -44,7 +45,6 @@
 	}
 
 	function setActive(target: EventTarget | null) {
-		console.log('llamando')
 		if (target instanceof HTMLElement) {
 			let num_elements = units.length - 1;
 			let total = target.scrollWidth - target.clientWidth;
@@ -173,7 +173,7 @@
 	}
 	@media (max-width: 700px) {
 		h1, nav * {
-			font-size: 20px;
+			font-size: 24px;
 		}
 		span {
 			display: none;
