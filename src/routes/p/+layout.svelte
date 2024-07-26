@@ -3,11 +3,11 @@
 	import Footer from '$lib/compo/Footer.svelte'
 
 	const footer_links = [
-		'/asistencias',
-		'/virtual',
-		'/horario',
-		'/notas',
-		'/estudiantes'
+		'/p/asistencias',
+		'/p/virtual',
+		'/p/horario',
+		'/p/notas',
+		'/p/estudiantes'
 	]
 </script>
 

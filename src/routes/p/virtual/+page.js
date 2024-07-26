@@ -13,7 +13,7 @@ export async function load() {
 			],
 			links: [
 				{ name: 'Esta lectura tiene un nombre muy grande. Dificil de ver en el teléfono', href: 'link/to/your/download/file' },
-				{ name: 'Lectura 2', href: 'link/to/your/download/file' }
+				{ name: 'Lectura 2', href: 'link/to/file' }
 			]
 		}]
 	}]
