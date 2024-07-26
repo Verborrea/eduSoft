@@ -203,6 +203,7 @@
 		align-self: flex-end;
 	}
 	dialog {
+	    padding: 24px;
 		border-radius: 16px;
 		border: none;
 		width: calc(100% - 32px);
@@ -295,6 +296,9 @@
 		margin: 0;
 	}
 	@media (max-width: 700px) {
+		dialog {
+			padding: 16px;
+		}
 		h1 {
 			flex-direction: column;
 			align-items: stretch;
