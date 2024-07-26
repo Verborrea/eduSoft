@@ -4,11 +4,17 @@
 
 	export let data
 
+	interface Link {
+		name: string;
+		href: string;
+	}
+
 	interface Theme {
 		id: string;
 		name: string;
 		text: string;
 		images: string[];
+		links: Link[];
 	}
 
 	interface Unit {
@@ -172,7 +178,7 @@
 		color: var(--text);
 	}
 	@media (max-width: 700px) {
-		h1, nav * {
+		h1 {
 			font-size: 24px;
 		}
 		span {

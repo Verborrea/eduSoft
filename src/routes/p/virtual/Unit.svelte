@@ -3,13 +3,20 @@
 	import { generateTimestampID } from '$lib/utils'
 	import { fly } from 'svelte/transition'
 	import { flip } from 'svelte/animate'
-    import Images from './Images.svelte';
+    import Images from './Images.svelte'
+	import Links from './Links.svelte'
+
+	interface Link {
+		name: string;
+		href: string;
+	}
 
 	interface Theme {
 		id: string;
 		name: string;
 		text: string;
 		images: string[];
+		links: Link[];
 	}
 
 	interface Unit {
@@ -27,6 +34,7 @@
 	let editingThemeName: string
 	let editingThemeText: string
 	let editingThemeImages: string[]
+	let editingThemeLinks: Link[]
 
 	const dispatch = createEventDispatcher()
 
@@ -35,7 +43,8 @@
 			id: generateTimestampID(),
 			name: newThemeName === '' ? 'Tema sin nombre' : newThemeName,
 			text: '',
-			images: []
+			images: [],
+			links: []
 		}]
 		newThemeName = ''
 	}
@@ -57,6 +66,7 @@
 		editingThemeName = theme.name
 		editingThemeText = theme.text
 		editingThemeImages = theme.images
+		editingThemeLinks = theme.links
 		editModal.showModal()
 		currentTheme = theme
 	}
@@ -68,7 +78,8 @@
 					id: t.id,
 					name: editingThemeName,
 					text: editingThemeText,
-					images: editingThemeImages
+					images: editingThemeImages,
+					links: editingThemeLinks
 				}
 			}
 			return t
@@ -80,13 +91,14 @@
 		editingThemeName = ''
 		editingThemeText = ''
 		editingThemeImages = []
+		editingThemeLinks = []
 		editModal.close()
 	}
 </script>
 
 <dialog bind:this={editModal}>
 	<form class="fcol16" action="">
-		<h1>Editar {editingThemeName}</h1>
+		<h1>Editar Tema</h1>
 		<div class="input-field fcol16">
 			<label for="theme-name-{index}">Nombre:</label>
 			<input
@@ -108,8 +120,12 @@
 			/>
 		</div>
 		<div class="input-field fcol16">
-			<label for="theme-name">Imágenes:</label>
+			<label for="theme-images">Imágenes:</label>
 			<Images {index} bind:images={editingThemeImages}/>
+		</div>
+		<div class="input-field fcol16">
+			<label for="theme-files">Archivos:</label>
+			<Links {index} bind:links={editingThemeLinks}/>
 		</div>
 		<div class="btns fc">
 			<button type="button" class="btn btn-secondary focus-visible" on:click={closeModal}>

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { pushState } from '$app/navigation'
 
 	export let index;
 	export let unit;
@@ -16,7 +17,9 @@
 
 	function toggleImage(btn: HTMLButtonElement) {
 		if (btn.classList.toggle('focus')) {
-			history.pushState('', '', '?visible-image');
+			pushState('', {
+				showModal: true
+			});
 			focusedButton = btn;
 		} else {
 			history.back();
@@ -135,6 +138,9 @@
 		padding: 10px;
 		gap: 12px;
 		border-radius: 12px;
+	}
+	a[download] svg {
+		flex-shrink: 0;
 	}
 	@media (max-width: 700px) {
 		article {

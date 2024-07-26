@@ -97,4 +97,12 @@
 	label:hover {
 		background: var(--gray-dark);
 	}
+	@media (max-width: 700px) {
+		button svg{
+			display: block;
+		}
+		button img {
+			filter: brightness(0.5);
+		}
+	}
 </style>

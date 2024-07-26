@@ -10,6 +10,10 @@ export async function load() {
 			images: [
 				'https://art.pixilart.com/4b680819d6447f3.gif',
 				'https://www.publicdomainpictures.net/pictures/130000/velka/keep-calm-and-carry-on-1441446793oby.jpg'
+			],
+			links: [
+				{ name: 'Esta lectura tiene un nombre muy grande. Dificil de ver en el teléfono', href: 'link/to/your/download/file' },
+				{ name: 'Lectura 2', href: 'link/to/your/download/file' }
 			]
 		}]
 	}]
