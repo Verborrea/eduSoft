@@ -1,3 +1,7 @@
+<script>
+  export let data
+</script>
+
 <svelte:head>
   <title>eduSoft | Alumnos</title>
 </svelte:head>
@@ -15,13 +19,15 @@
       </tr>
     </thead>
     <tbody>
+      {#each data.alumnos as alumno}
       <tr>
+        <td> {alumno.id_alumno} </td>
+        <td> {alumno.nombre} </td>
         <td>  </td>
         <td>  </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  </td>
+        <td> {alumno.pension} </td>
       </tr>
+      {/each}
     </tbody>
   </table>
 </main>

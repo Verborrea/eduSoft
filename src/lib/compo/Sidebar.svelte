@@ -32,6 +32,7 @@
     border-radius: 8px;
   }
   a:hover {
+    text-decoration: none;
     background: var(--gray);
   }
 </style>

@@ -1,3 +1,7 @@
+<script>
+  export let data;
+</script>
+
 <svelte:head>
   <title>eduSoft | Cursos</title>
 </svelte:head>
@@ -13,11 +17,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>  </td>
-        <td>  </td>
-        <td>  </td>
-      </tr>
+      {#each data.cursos as curso}
+        <tr>
+          <td>{curso.id_curso}</td>
+          <td>{curso.nombre_curso}</td>
+          <td>{curso.descripcion}</td>
+        </tr>
+      {/each}
     </tbody>
   </table>
 </main>

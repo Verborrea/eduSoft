@@ -1,3 +1,9 @@
+<script>
+  export let data
+
+  console.log(data.grupos[0])
+</script>
+
 <svelte:head>
   <title>eduSoft | Grupos</title>
 </svelte:head>
@@ -15,13 +21,15 @@
       </tr>  
     </thead>  
     <tbody>
+      {#each data.grupos as grupo }
       <tr>
-        <td>  </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  </td>
-      </tr>  
+        <td> {grupo.id_grupo} </td>
+        <td> {grupo.nombre_grupo} </td>
+        <td> {grupo.id_curso} </td>
+        <td> {grupo.id_profesor} </td>
+        <td> {grupo.semestre} </td>
+      </tr>
+      {/each}
     </tbody>  
   </table>  
 </main>
