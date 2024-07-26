@@ -283,9 +283,6 @@
 			flex-direction: column;
 			align-items: stretch;
 		}
-		.d-o {
-			display: none;
-		}
 		article {
 			padding: 0;
 			border-radius: 0;
