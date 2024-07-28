@@ -53,7 +53,7 @@
 			</button>
 		</div>
 	{/each}
-	<label class="fc" for="links-{index}">Añadir Archivo</label>
+	<label class="input" for="links-{index}">Añadir Archivo</label>
 </div>
 
 <style>
@@ -76,12 +76,7 @@
 		flex: 1;
 	}
 	label {
-		flex-shrink: 0;
-		border-radius: 12px;
-		cursor: pointer;
 		justify-content: center;
-		background: var(--gray-light);
-		padding: 10px;
 	}
 	label:active {
 		transform: scale(0.95);

@@ -106,15 +106,13 @@
 			}
 			:root {
 				--back: #fff;
-				--text: #2e2e2e;
-				--primary: #111;
-				--primary-disabled: #5b5b5b;
-				--blue: #1982c4;
 				--gray-light: #e9e9e9;
 				--gray: #dfdfdf;		/* usados para inputs y botones */
+				--inactive: #CFCFCF;	/* indica disabled o inactive */
 				--gray-dark: #c1c1c1;
-				--both: #7c7c7c;		/* usar en textos */
-				--inactive: #CFCFCF;	/* indica disabled o inactive */		
+				--both: #7c7c7c;		/* usar en textos */	
+				--text: #2e2e2e;
+				--primary: #111;	
 				--red: #FF595E;
 				--red-dark: hsl(358, 100%, 47%);
 				--green: #8AC926;
@@ -151,23 +149,15 @@
 					16px "BC",
 					sans-serif;
 				font-weight: 500;
+				border: none;
 			}
 			img,
 			svg {
 				display: block;
 			}
-			button {
-				background: transparent;
-				border: none;
-				cursor: pointer;
-				padding: 0;
-				outline-color: var(--outline);
-				transition: outline 0.2s ease;
-			}
 			a {
 				color: var(--text);
 				text-decoration: none;
-				outline-color: var(--outline);
 			}
 			a:hover {
 				text-decoration: underline;
@@ -181,9 +171,14 @@
 			}
 			.super {
 				padding: 24px;
-				height: calc(100dvh - 136px);
+				height: calc(100dvh - 140px);
 			}
 			/* ============== Botones ============== */
+			button {
+				background: transparent;
+				border: none;
+				cursor: pointer;
+			}
 			.btn {
 				display: flex;
 				align-items: center;
@@ -191,6 +186,7 @@
 				gap: 8px;
 				text-decoration: none;
 				border-radius: 12px;
+				line-height: 24px;
 			}
 			.btn-primary {
 				background-color: var(--primary);
@@ -217,11 +213,60 @@
 			.btn-outline:hover {
 				background: var(--gray);
 			}
+			.btn-outline-red {
+				text-decoration: none;
+				color: var(--red);
+				border-color: var(--red);
+			}
+			.btn-outline-red:hover {
+				background: var(--red);
+				color: var(--back);
+			}
 			.btn.green, .btn.red {
 				padding: 10px 24px;
-				border-radius: 8px;
 				color: var(--back);
 				justify-content: center;
+			}
+			/* ============== Inputs ============== */
+			input, textarea, select {
+				flex: 1;
+				background: var(--gray);
+				line-height: 24px;
+			}
+			input:focus {
+				outline: none;
+			}
+			.input {
+				border-radius: 12px;
+				padding: 10px 16px;
+				background-color: var(--gray);
+				display: flex;
+				align-items: center;
+				gap: 8px;
+			}
+			select {
+				appearance: none;
+				border-radius: 12px;
+				padding: 10px 16px;
+				padding-right: 52px;
+				background: var(--gray);
+				color: var(--text);
+				outline-color: var(--outline);
+			}
+			.select::after {
+				content: "";
+				width: 20px;
+				height: 20px;
+				background-image: url('/select.svg');
+				font-size: 1rem;
+				top: 50%;
+				transform: translateY(-50%);
+				right: 16px;
+				position: absolute;
+			}
+			textarea {
+				flex: auto;
+				resize: vertical;
 			}
 			/* ================= Colores ================= */
 			.green {
@@ -267,28 +312,14 @@
 				font-weight: 600;
 				margin: 0;
 			}
-			.div-input {
-				display: flex;
-				flex-direction: row;
-				gap: 8px;
-				align-items: center;
-				border-radius: 16px;
-				padding: 10px 16px;
-				background-color: var(--gray);
+			.focus-visible {
+				outline-color: var(--outline);
 				transition: outline 0.2s ease;
 			}
-			.focus-visible, .div-input {
-				outline-color: var(--outline);
-			}
-			.div-input:has(input:focus),
-			.focus-visible:focus {
+			.focus-visible:focus,
+			.focus-visible:has(input:focus),
+			.focus-visible:has(select:focus) {
 				outline: 4px solid var(--outline);
-			}
-			.div-input > input {
-				flex: 1;
-				background: none;
-				outline: none;
-				border: none;
 			}
 			::-ms-reveal {
 				display: none;
@@ -309,10 +340,7 @@
 				.super {
 					padding: 0 16px;
 					gap: 16px !important;
-					height: calc(100dvh - 191.5px);
-				}
-				.focus-visible:focus {
-					outline: none;
+					height: calc(100dvh - 200px);
 				}
 				.d-o {
 					display:none;

@@ -35,7 +35,7 @@
 				loading = false;
 			};
 		}}>
-			<label for="username" class="div-input">
+			<label for="username" class="input focus-visible">
 				<svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="var(--primary)"><path d="M358-406q-21 0-35.5-14.5T308-456q0-21 14.5-35.5T358-506q21 0 35.5 14.5T408-456q0 21-14.5 35.5T358-406Zm244 0q-21 0-35.5-14.5T552-456q0-21 14.5-35.5T602-506q21 0 35.5 14.5T652-456q0 21-14.5 35.5T602-406ZM480.46-162q132.46 0 225-93Q798-348 798-479.46q0-23.54-5-54.04T780-586q-21 5-39 6.5t-41.2 1.5q-86.76 0-164.78-34T395-710q-37 79-94.5 131.5T164-499.66q-1 4.03-1.5 10.04-.5 6.01-.5 10.03Q162-348 255-255t225.46 93ZM480-64q-86.02 0-161.67-32.52-75.65-32.52-132.47-89.34-56.82-56.82-89.34-132.62Q64-394.28 64-480.46q0-86.18 32.52-162.02t89.34-132.16q56.82-56.32 132.62-88.84Q394.28-896 480.46-896q86.18 0 162.03 32.76 75.84 32.76 131.95 88.92 56.1 56.16 88.83 132.08Q896-566.32 896-480q0 86.02-32.52 161.67-32.52 75.65-88.84 132.47-56.32 56.82-132.29 89.34T480-64Z"/></svg>
 				<input
 					id="username"
@@ -46,7 +46,7 @@
 					required
 				>
 			</label>
-			<label for="password" class="div-input">
+			<label for="password" class="input focus-visible">
 				<svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="var(--primary)"><path d="M276-360q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35Zm0 124q79 0 138.5-43T497-390h14l29 30q8 8 17.5 12t19.5 4q10 0 19.5-3.5T614-359l54-54 46 46q8 8 17.5 11.5T751-352q10 0 19.5-3.5T788-367l77-76q8-8 11.5-17.5T880-480q0-10-3.5-19.5T865-517l-38-38q-8-8-17-11.5t-20-3.5H497q-26-66-83.5-110T276-724q-100 0-172 72T32-480q0 100 72 172t172 72Z"/></svg>
 				<input
 					id="password"
@@ -121,9 +121,6 @@
 	span {
 		color: var(--both);
 	}
-	input, .btn {
-		line-height: 24px;
-	}
 	@media (max-width: 700px) {
 		.img-container {
 			display: none;
@@ -132,6 +129,7 @@
 			grid-template-columns: 1fr;
 		}
 		.info {
+			padding: 48px 24px;
 			justify-content: flex-start;
 		}
 	}

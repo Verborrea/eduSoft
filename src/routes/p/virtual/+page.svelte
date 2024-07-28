@@ -143,7 +143,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		color: var(--both);
+		color: var(--gray-dark);
 		font-weight: 500;
 	}
 	.slides {

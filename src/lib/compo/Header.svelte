@@ -22,13 +22,13 @@
 			Mi Perfil
 		</a>
 	</div>
-	<div class="abs wrapper">
-		<select id="course" class="focus-visible" name="course" title="Curso" bind:value={$currentGroup}>
+	<label for="group" class="abs select">
+		<select id="group" name="group" class="focus-visible" title="Curso" bind:value={$currentGroup}>
 			{#each groups as group}
 				<option value={group}>{group.name}</option>
 			{/each}
 		</select>
-	</div>
+	</label>
 </header>
 
 <style>
@@ -49,39 +49,15 @@
 	a:hover {
 		text-decoration: none;
 	}
-	.wrapper {
+	.select {
 		left: 50%;
 		transform: translateX(-50%);
-	}
-	select {
-		appearance: none;
-		background: var(--gray);
-		border: none;
-		border-radius: 8px;
-		padding: 10px 24px;
-		padding-right: 52px;
-		color: var(--text);
-		outline-color: var(--outline);
-	}
-	select:hover {
-		background: var(--gray-dark);
-	}
-	.wrapper::after {
-		content: "";
-		width: 20px;
-		height: 20px;
-		background-image: url('/select.svg');
-		font-size: 1rem;
-		top: 50%;
-		transform: translateY(-50%);
-		right: 24px;
-		position: absolute;
 	}
 	@media (max-width: 700px) {
 		header {
 			padding: 16px;
 		}
-		.wrapper {
+		.select {
 			position: relative;
 		}
 		select {

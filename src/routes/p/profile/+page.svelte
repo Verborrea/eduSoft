@@ -1,7 +1,7 @@
 <main class="super">
 	<h1>Mi Perfil</h1>
 	<form action="/logout" method="post">
-		<button type="submit" class="btn btn-outline">Cerrar Sesión</button>
+		<button type="submit" class="btn btn-outline btn-outline-red">Cerrar Sesión</button>
 	</form>
 </main>
 
@@ -17,15 +17,6 @@
 		justify-content: space-between;
 		flex-direction: row;
     	align-items: flex-start;
-	}
-	button {
-		text-decoration: none;
-		color: var(--red);
-    	border-color: var(--red);
-	}
-	button:hover {
-		background: var(--red);
-		color: var(--back);
 	}
 	@media (max-width: 700px) {
 		form {
