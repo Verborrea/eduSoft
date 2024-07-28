@@ -1,3 +1,14 @@
+<script>
+	import { currentGroup } from "$lib/stores";
+	import { onMount } from "svelte";
+
+	export let groups
+
+	onMount(() => {
+		$currentGroup = groups[0]
+	})
+</script>
+
 <header class="rel fcol16">
 	<div class="top fc justify-between">
 		<a href="/p" title="Inicio" class="fc">
@@ -12,10 +23,10 @@
 		</a>
 	</div>
 	<div class="abs wrapper">
-		<select id="course" class="focus-visible" name="course" title="Curso">
-			<option>Matemática CCOMP2-1</option>
-			<option>Ciencias Sociales CCOMP2-1</option>
-			<option>Lenguas CCOMP2-1</option>
+		<select id="course" class="focus-visible" name="course" title="Curso" bind:value={$currentGroup}>
+			{#each groups as group}
+				<option value={group}>{group.name}</option>
+			{/each}
 		</select>
 	</div>
 </header>

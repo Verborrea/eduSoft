@@ -1,6 +1,6 @@
 <script lang="ts">
   import QuickAction from '$lib/compo/QuickAction.svelte'
-  let nombre = 'Pedro'
+  export let data
 </script>
 
 <svelte:head>
@@ -9,7 +9,7 @@
 
 <main class="super fc">
   <div class="top fcol16">
-    <h1>Bienvenido {nombre}</h1>
+    <h1>Bienvenido {data.nombre}</h1>
     <h2>Seleccione un módulo para empezar</h2>
   </div>
   <div class="fc links">
