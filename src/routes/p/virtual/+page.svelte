@@ -67,7 +67,6 @@
 
 	function resetUnits() {
 		units = JSON.parse(JSON.stringify(data.units))
-		console.log(data.units)
 	}
 </script>
 

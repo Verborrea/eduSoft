@@ -13,6 +13,6 @@
 	export let data
 </script>
 
-<Header groups={data.groups}/>
+<Header prefix="p" groups={data.groups}/>
 <slot/>
 <Footer links={footer_links}/>

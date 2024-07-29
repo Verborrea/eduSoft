@@ -1,68 +1,7 @@
 <script lang="ts">
 	import Slide from './Slide.svelte'
 
-	const units = [
-		{
-			name: 'Realidad Peruana en la época republicana',
-			themes: [
-				{
-					name: 'Independencia y Consolidación Republicana',
-					text: 'Esta unidad explora los eventos y procesos clave que marcaron el inicio y los primeros años de la República del Perú, desde el movimiento independentista liderado por figuras como José de San Martín y Simón Bolívar, hasta la formación de nuevas estructuras políticas, económicas y sociales.',
-					files: [
-						{ name: 'Lectura 1', href: 'link/to/your/download/file' },
-						{ name: 'Lectura 2', href: 'link/to/your/download/file' }
-					],
-					images: [
-						'https://art.pixilart.com/4b680819d6447f3.gif'
-					]
-				},
-				{
-					name: 'Economía y Sociedad en la República',
-					text: 'Esta unidad explora la evolución económica y social del Perú durante la época republicana. Desde la importancia inicial de la minería hasta la diversificación económica posterior.',
-					images: [
-						'https://www.publicdomainpictures.net/pictures/130000/velka/keep-calm-and-carry-on-1441446793oby.jpg'
-					]
-				},
-				{
-					name: 'Independencia y Consolidación Republicana',
-					text: 'Esta unidad explora los eventos y procesos clave que marcaron el inicio y los primeros años de la República del Perú, desde el movimiento independentista liderado por figuras como José de San Martín y Simón Bolívar, hasta la formación de nuevas estructuras políticas, económicas y sociales.',
-					files: [
-						{ name: 'Lectura 1', href: 'link/to/your/download/file' },
-						{ name: 'Lectura 2', href: 'link/to/your/download/file' }
-					]
-				},
-				{
-					name: 'Economía y Sociedad en la República',
-					text: 'Esta unidad explora la evolución económica y social del Perú durante la época republicana. Desde la importancia inicial de la minería hasta la diversificación económica posterior.',
-				}
-			]
-		},
-		{
-			name: 'Diversidad del país',
-			themes: [
-				{
-					name: 'Tema con solo documentos',
-					files: [
-						{ name: 'Lectura 1', href: 'link/to/your/download/file' },
-						{ name: 'Lectura 2', href: 'link/to/your/download/file' }
-					]
-				}
-			]
-		},
-		{
-			name: 'Diversidad del país',
-			themes: [
-				{
-					name: 'Tema con solo documentos',
-					text: 'La diversidad cultural del Perú se manifiesta en una mezcla única de identidades indígenas, mestizas y afroperuanas, reflejo de siglos de interacción y mestizaje que han enriquecido la sociedad peruana con una variedad de expresiones culturales y sociales.'
-				},
-				{
-					name: 'Patrimonio Cultural',
-					text: 'El patrimonio cultural y la artesanía en el Perú son pilares fundamentales que reflejan la historia, la creatividad y la diversidad del país. Desde sitios arqueológicos hasta técnicas artesanales ancestrales, constituyen un legado vivo que enriquece la identidad nacional.'
-				}
-			]
-		}
-	]
+	export let data
 
 	let active = 0
 
@@ -72,7 +11,7 @@
 
 	function setActive(target: EventTarget | null) {
 		if (target instanceof HTMLElement) {
-			let num_elements = units.length - 1;
+			let num_elements = data.units.length - 1;
 			let total = target.scrollWidth - target.clientWidth;
 			let ratio = target.scrollLeft / total;
 			if (ratio === 0) {
@@ -84,31 +23,52 @@
 			}
 		}
 	}
-</script>
+	</script>
 
 <svelte:head>
   	<title>eduSoft | Aula Virtual</title>
 </svelte:head>
 
 <main class="super">
-	<!-- <h1>Aula Virtual</h1> -->
+	{#if data.units.length > 0}
 	<div class="overflow-container">
 		<div class="slides" on:scroll={(e) => setActive(e.target)}>
-			{#each units as unit, index}
+			{#each data.units as unit, index}
 				<Slide index={index + 1} {unit}/>
 			{/each}
 		</div>
 	</div>
 	<nav class="fc">
-		{#each { length: units.length} as _, index}
+		{#each { length: data.units.length} as _, index}
 			<a href="#unit{index + 1}" class:active={active == index} on:click={()=>{gotoUnit(index)}}>
 				{index + 1}
 			</a>
 		{/each}
 	</nav>
+	{:else}
+	<div class="fcol16">
+		<h1>Aula Virtual</h1>
+		<h2>Todavía no hay contenido :(</h2>
+	</div>
+	{/if}
 </main>
 
 <style>
+	.fcol16 {
+		height: 100%;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+	}
+	h1 {
+		font-size: 48px;
+		margin: 0;
+		color: var(--yellow);
+	}
+	h2 {
+		margin: 0;
+		color: var(--both);
+	}
 	main {
 		display: flex;
 		flex-direction: column;

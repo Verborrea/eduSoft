@@ -1,9 +1,9 @@
 <script lang="ts">
-  import Header from '$lib/compo/HeaderAdmin.svelte'
+  import HeaderAdmin from '$lib/compo/HeaderAdmin.svelte'
   import Sidebar from '$lib/compo/Sidebar.svelte'
 </script>
 
-<Header/>
+<HeaderAdmin/>
 <div>
   <Sidebar/>
   <slot/>

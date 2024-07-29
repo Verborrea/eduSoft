@@ -14,7 +14,6 @@
 			files = input.files;
 
 			for (const file of files) {
-				console.log(file)
 				links = [...links, {
 					name: file.name,
 					href: URL.createObjectURL(file)

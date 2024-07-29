@@ -1,7 +1,5 @@
 <script>
   export let data
-
-  console.log(data.grupos[0])
 </script>
 
 <svelte:head>
