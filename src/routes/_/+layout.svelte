@@ -9,8 +9,10 @@
 		'/_/notas',
 		'/_/estudiantes'
 	]
+	
+	export let data
 </script>
 
-<Header/>
+<Header groups={data.groups}/>
 <slot/>
 <Footer links={footer_links}/>

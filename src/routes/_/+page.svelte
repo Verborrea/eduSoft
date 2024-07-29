@@ -1,6 +1,9 @@
 <script lang="ts">
   import QuickAction from '$lib/compo/QuickAction.svelte'
-  let nombre = 'Juan'
+
+  export let data
+
+  let nombre = data.nombre
 </script>
 
 <svelte:head>
