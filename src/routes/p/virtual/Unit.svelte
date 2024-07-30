@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte'
+	import { createEventDispatcher, onMount } from 'svelte'
 	import { generateTimestampID } from '$lib/utils'
 	import { fly } from 'svelte/transition'
 	import { flip } from 'svelte/animate'
@@ -29,11 +29,14 @@
 
 	let editModal: any
 	let newThemeName = ''
+	let images_per_theme: any = {}
 
 	let currentTheme: Theme
 	let editingThemeName: string
 	let editingThemeText: string
 	let editingThemeImages: string[]
+	let editingThemeIToAdd: any[]
+	let editingThemeIToRemove: string[]
 	let editingThemeLinks: Link[]
 
 	const dispatch = createEventDispatcher()
@@ -66,6 +69,8 @@
 		editingThemeName = theme.name
 		editingThemeText = theme.text
 		editingThemeImages = theme.images
+		editingThemeIToAdd = images_per_theme[theme.id].toAdd
+		editingThemeIToRemove = images_per_theme[theme.id].toRemove
 		editingThemeLinks = theme.links
 		editModal.showModal()
 		currentTheme = theme
@@ -84,6 +89,8 @@
 			}
 			return t
 		})
+		images_per_theme[currentTheme.id].toAdd = editingThemeIToAdd
+		images_per_theme[currentTheme.id].toRemove = editingThemeIToRemove
 		closeModal()
 	}
 
@@ -91,6 +98,8 @@
 		editingThemeName = ''
 		editingThemeText = ''
 		editingThemeImages = []
+		editingThemeIToAdd = []
+		editingThemeIToRemove = []
 		editingThemeLinks = []
 		editModal.close()
 	}
@@ -124,6 +133,15 @@
 			draggedTheme = null
 		}
 	}
+
+	onMount(()=>{
+		for (const theme of unit.themes) {
+			images_per_theme[theme.id] = {
+				toAdd: [],
+				toRemove: []
+			}
+		}
+	})
 </script>
 
 <dialog bind:this={editModal}>
@@ -151,7 +169,12 @@
 		</div>
 		<div class="input-field fcol16">
 			<label for="theme-images">Imágenes:</label>
-			<Images {index} bind:images={editingThemeImages}/>
+			<Images
+				{index}
+				bind:images={editingThemeImages}
+				bind:imagesToAdd={editingThemeIToAdd}
+				bind:imagesToRemove={editingThemeIToRemove}
+			/>
 		</div>
 		<div class="input-field fcol16">
 			<label for="theme-files">Archivos:</label>

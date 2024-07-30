@@ -1,31 +1,36 @@
 export async function load({ url, locals }) {
-	if (!url.searchParams.has('grupo')) {
-		return { units: [] }
+
+	const groupId = url.searchParams.get('g');
+
+	if (groupId) {
+		const record = await locals.pb.collection('groups').getOne(groupId, {
+			fields: 'virtual'
+		});
+		
+		return {
+			units: record.virtual
+		}
 	}
 
-	const group_id = url.searchParams.get('grupo')
 	return {
 		units: []
 	}
 }
 
-// export function load (): PageData {
-// 	const units = [{
-// 		id: '1',
-// 		name: 'Unidad de Prueba por Default',
-// 		themes: [{
-// 			id: '1',
-// 			name: 'La Independencia del Perú',
-// 			text: 'Este es un texto relativamente largo, con saltos de línea y demas.\nAquí hay uno.',
-// 			images: [
-// 				'https://art.pixilart.com/4b680819d6447f3.gif',
-// 				'https://www.publicdomainpictures.net/pictures/130000/velka/keep-calm-and-carry-on-1441446793oby.jpg'
-// 			],
-// 			links: [
-// 				{ name: 'Esta lectura tiene un nombre muy grande. Dificil de ver en el teléfono', href: 'link/to/your/download/file' },
-// 				{ name: 'Lectura 2', href: 'link/to/file' }
-// 			]
-// 		}]
-// 	}]
-// 	return { units }
-// }
+export const actions = {
+	default: async ({ url, request, locals, cookies }) => {
+		const formData = await request.formData();
+		
+		// const units = JSON.parse(formData.get('units')?.toString() || '');
+		const units = formData.get('units')?.toString() || '';
+		const groupId = formData.get('groupId')?.toString() || '';
+
+		try {
+			await locals.pb.collection('groups').update(groupId, {
+				"virtual": units
+			});
+		} catch (error) {
+			console.error(error)	
+		}
+	}
+};
