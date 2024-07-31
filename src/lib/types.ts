@@ -9,3 +9,23 @@ export interface Teacher {
 	updated: string;
 	user_id: string;
 }
+
+export interface Link {
+	name: string;
+	href: string;
+}
+
+export interface Theme {
+	id: string;
+	name: string;
+	text: string;
+	images: string[];
+	links: Link[];
+}
+
+export interface Unit {
+	id: string;
+	name: string;
+	themes: Theme[];
+	images?: any;
+}

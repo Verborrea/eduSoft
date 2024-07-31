@@ -5,31 +5,12 @@
 	import { flip } from 'svelte/animate'
 	import Images from './Images.svelte'
 	import Links from './Links.svelte'
-
-	interface Link {
-		name: string;
-		href: string;
-	}
-
-	interface Theme {
-		id: string;
-		name: string;
-		text: string;
-		images: string[];
-		links: Link[];
-	}
-
-	interface Unit {
-		id: string;
-		name: string;
-		themes: Theme[];
-	}
+	import type { Unit, Theme, Link } from '$lib/types'
 
 	export let index, unit : Unit
 
 	let editModal: any
 	let newThemeName = ''
-	let images_per_theme: any = {}
 
 	let currentTheme: Theme
 	let editingThemeName: string
@@ -69,8 +50,8 @@
 		editingThemeName = theme.name
 		editingThemeText = theme.text
 		editingThemeImages = theme.images
-		editingThemeIToAdd = images_per_theme[theme.id].toAdd
-		editingThemeIToRemove = images_per_theme[theme.id].toRemove
+		editingThemeIToAdd = unit.images[theme.id].toAdd
+		editingThemeIToRemove = unit.images[theme.id].toRemove
 		editingThemeLinks = theme.links
 		editModal.showModal()
 		currentTheme = theme
@@ -89,8 +70,8 @@
 			}
 			return t
 		})
-		images_per_theme[currentTheme.id].toAdd = editingThemeIToAdd
-		images_per_theme[currentTheme.id].toRemove = editingThemeIToRemove
+		unit.images[currentTheme.id].toAdd = editingThemeIToAdd
+		unit.images[currentTheme.id].toRemove = editingThemeIToRemove
 		closeModal()
 	}
 
@@ -136,7 +117,7 @@
 
 	onMount(()=>{
 		for (const theme of unit.themes) {
-			images_per_theme[theme.id] = {
+			unit.images[theme.id] = {
 				toAdd: [],
 				toRemove: []
 			}

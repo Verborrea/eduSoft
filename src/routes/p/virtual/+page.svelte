@@ -1,28 +1,10 @@
 <script lang="ts">
-    import { currentGroup } from '$lib/stores';
+    import { currentGroup } from '$lib/stores'
 	import { generateTimestampID } from '$lib/utils'
-	import Unit from './Unit.svelte'
+	import type { Unit } from '$lib/types'
+	import Slide from './Slide.svelte'
 
 	export let data
-
-	interface Link {
-		name: string;
-		href: string;
-	}
-
-	interface Theme {
-		id: string;
-		name: string;
-		text: string;
-		images: string[];
-		links: Link[];
-	}
-
-	interface Unit {
-		id: string;
-		name: string;
-		themes: Theme[];
-	}
 
 	let units: Unit[] = JSON.parse(JSON.stringify(data.units))
 	let loading = false
@@ -31,7 +13,8 @@
 		units = [...units, {
 			id: generateTimestampID(),
 			name: 'Unidad sin nombre',
-			themes: []
+			themes: [],
+			images: {}
 		}]
 		setTimeout(() => {
 			const newElement = document.getElementById(`unit${units.length}`)
@@ -75,6 +58,15 @@
 			const formData = new FormData();
 			formData.append('units', JSON.stringify(units));
 			formData.append('groupId', $currentGroup.id);
+
+			// Recorrer las unidades en busqueda de archivos
+			units.forEach((unit) => {
+				unit.images.forEach((imageSet: any) => {
+					imageSet.toAdd.forEach((imageFile: any) => {
+						formData.append('images', imageFile.file);
+					});
+				});
+			});
 
 			// Enviar la solicitud POST con el FormData
 			const response = await fetch('/p/virtual', {
@@ -127,7 +119,7 @@
 		{#if units.length > 0}
 		<div class="slides" on:scroll={(e) => setActive(e.target)}>
 			{#each units as unit, index}
-			<Unit index={index + 1} {unit} on:delete={deleteUnit}/>
+			<Slide index={index + 1} {unit} on:delete={deleteUnit}/>
 			{/each}
 		</div>
 		{:else}

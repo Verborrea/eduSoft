@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { hostname } from '$lib/utils'
+	import { currentGroup } from '$lib/stores'
+	import { onMount } from 'svelte'
 	import { pushState } from '$app/navigation'
 
 	export let index;
@@ -44,7 +46,7 @@
 		{/if}
 		{#each theme.images ?? [] as image}
 			<button type="button" on:click={e => toggleImage(e.currentTarget)}>
-				<img src={image} alt={theme.name}>
+				<img src="{hostname}/api/files/groups/{$currentGroup.id}/{image}" alt={theme.name}>
 			</button>
 		{/each}
 		{#each theme.links ?? [] as file}
