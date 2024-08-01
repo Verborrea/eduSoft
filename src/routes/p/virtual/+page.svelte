@@ -1,5 +1,6 @@
 <script lang="ts">
-    import { currentGroup } from '$lib/stores'
+	import { deserialize } from '$app/forms';
+	import { currentGroup, imagesToDelete } from '$lib/stores'
 	import { generateTimestampID } from '$lib/utils'
 	import type { Unit } from '$lib/types'
 	import Slide from './Slide.svelte'
@@ -13,8 +14,7 @@
 		units = [...units, {
 			id: generateTimestampID(),
 			name: 'Unidad sin nombre',
-			themes: [],
-			images: {}
+			themes: []
 		}]
 		setTimeout(() => {
 			const newElement = document.getElementById(`unit${units.length}`)
@@ -26,7 +26,15 @@
 	}
 
 	function deleteUnit(event: any) {
-		units = units.filter((u: any) => u.id !== event.detail.id)
+		units = units.filter((u: Unit) => {
+			const toDelete = u.id !== event.detail.id
+			if (toDelete) {
+				u.themes.forEach(t => {
+					$imagesToDelete = [...$imagesToDelete, ...t.images]
+				});
+			}
+			return !toDelete
+		})
 	}
 
 	let active = 0
@@ -61,14 +69,21 @@
 
 			// Recorrer las unidades en busqueda de archivos
 			units.forEach((unit) => {
-				unit.images.forEach((imageSet: any) => {
-					imageSet.toAdd.forEach((imageFile: any) => {
-						formData.append('images', imageFile.file);
+				unit.themes.forEach((theme) => {
+					theme.itu.forEach((imageFile: any) => {
+						formData.append('itu', imageFile.file);
+					});
+					theme.itd.forEach((image: string) => {
+						formData.append('itd', image);
 					});
 				});
 			});
 
-			// Enviar la solicitud POST con el FormData
+			// borrar las imagenes de los temas y unidades eliminados
+			$imagesToDelete.forEach((image: string) => {
+				formData.append('itd', image);
+			});
+
 			const response = await fetch('/p/virtual', {
 				method: 'POST',
 				body: formData
@@ -78,13 +93,26 @@
 				throw new Error('Error en la solicitud: ' + response.statusText);
 			}
 
-			loading = false
+			if (!response.ok) {
+				throw new Error('Error en la solicitud: ' + response.statusText);
+			}
+
+			const result: any = deserialize(await response.text());
+
+			// Log para verificar el contenido de new_units
+			units = result.data.units
+			$imagesToDelete = []
+			data.units = result.data.units
+
 		} catch (error) {
 			console.error('Hubo un problema con la solicitud:', error);
+		} finally {
+			loading = false
 		}
 	}
 
 	function resetUnits() {
+		$imagesToDelete = []
 		units = JSON.parse(JSON.stringify(data.units))
 	}
 </script>

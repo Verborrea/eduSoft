@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { hostname, convertImageToAvif } from '$lib/utils'
+	import { hostname, convertImageToWebp } from '$lib/utils'
 	import { currentGroup } from '$lib/stores'
 
 	export let
-		index: number,
+		unit: string,
+		theme: string,
 		images: string[] = [],
 		imagesToAdd: any[] = [],
 		imagesToRemove: string[] = []
@@ -19,15 +20,12 @@
 				const reader = new FileReader();
 				reader.onload = async () => {
 					try {
-						const avifFile = await convertImageToAvif(file);
-						
+						const avifFile = await convertImageToWebp(file, unit, theme);
 						// Añadir la imagen al array de archivos a subir
 						imagesToAdd = [...imagesToAdd, {
 							file: avifFile,
 							src: URL.createObjectURL(avifFile)
 						}];
-
-						console.log(imagesToAdd)
 					} catch (error) {
 						console.error('Error converting image:', error);
 					}
@@ -49,7 +47,7 @@
 <input
 	type="file"
 	name="images"
-	id="images-{index}"
+	id="images_{unit}_{theme}"
 	accept="image/*"
 	multiple
 	bind:files
@@ -74,7 +72,7 @@
 			<img src={image.src} alt="Esta es una imagen">
 		</button>
 	{/each}
-	<label class="fc" for="images-{index}">+</label>
+	<label class="fc" for="images_{unit}_{theme}">+</label>
 </div>
 
 <style>

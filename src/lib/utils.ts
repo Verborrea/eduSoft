@@ -1,7 +1,7 @@
 export const hostname = 'https://edusoft.pockethost.io'
 
-export function generateTimestampID() {
-	return 'id-' + Date.now();
+export function generateTimestampID(): string {
+	return Date.now().toString();
 }
 
 export const rol_router = {
@@ -10,7 +10,7 @@ export const rol_router = {
 	student: '_'
 }
 
-export async function convertImageToAvif(file: File): Promise<File> {
+export async function convertImageToWebp(file: File, unit: string, theme: string): Promise<File> {
     return new Promise((resolve, reject) => {
         const img = new Image();
         const reader = new FileReader();
@@ -37,15 +37,15 @@ export async function convertImageToAvif(file: File): Promise<File> {
             // Dibujar la imagen en el canvas
             ctx.drawImage(img, 0, 0);
             
-            // Convertir el contenido del canvas a un blob en formato AVIF
+            // Convertir el contenido del canvas a un blob en formato WEBP
             canvas.toBlob((blob) => {
                 if (blob) {
                     // Crear un nuevo archivo con el blob y el nombre original modificado
-                    resolve(new File([blob], file.name.replace(/\.\w+$/, '.avif'), { type: 'image/avif' }));
+                    resolve(new File([blob], `${unit}_${theme}_${generateTimestampID()}.webp`, { type: 'image/webp' }));
                 } else {
-                    reject(new Error('Conversion to AVIF failed'));
+                    reject(new Error('Conversion to WEBP failed'));
                 }
-            }, 'image/avif', 0.5);
+            }, 'image/webp', 0.75);
         };
         
         // Leer el archivo como una URL de datos

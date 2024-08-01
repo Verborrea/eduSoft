@@ -123,7 +123,7 @@
 		position: fixed;
 		inset: 0;
 		background: #ffffffe0;
-		cursor: zoom-out;
+		cursor: zoom-out !important;
 	}
 	img {
 		width: 100%;

@@ -1,11 +1,12 @@
 <script lang="ts">
-	import { createEventDispatcher, onMount } from 'svelte'
+	import { createEventDispatcher } from 'svelte'
 	import { generateTimestampID } from '$lib/utils'
 	import { fly } from 'svelte/transition'
 	import { flip } from 'svelte/animate'
 	import Images from './Images.svelte'
 	import Links from './Links.svelte'
 	import type { Unit, Theme, Link } from '$lib/types'
+    import { imagesToDelete } from '$lib/stores';
 
 	export let index, unit : Unit
 
@@ -16,9 +17,9 @@
 	let editingThemeName: string
 	let editingThemeText: string
 	let editingThemeImages: string[]
-	let editingThemeIToAdd: any[]
-	let editingThemeIToRemove: string[]
 	let editingThemeLinks: Link[]
+	let editingThemeITU: any[]
+	let editingThemeITD: string[]
 
 	const dispatch = createEventDispatcher()
 
@@ -28,7 +29,9 @@
 			name: newThemeName === '' ? 'Tema sin nombre' : newThemeName,
 			text: '',
 			images: [],
-			links: []
+			links: [],
+			itu: [],
+			itd: []
 		}]
 		newThemeName = ''
 	}
@@ -36,25 +39,34 @@
 	function deleteTheme(e: HTMLButtonElement, id: string) {
 		e.parentElement?.classList.add('removed')
 		setTimeout(() => {
-			unit.themes = unit.themes.filter((t: any) => t.id !== id)
+			unit.themes = unit.themes.filter((t: any) => {
+				const toDelete = t.id === id
+				if (toDelete) {
+					$imagesToDelete = [...$imagesToDelete, ...t.images]
+				}
+				return !toDelete
+			})
 		}, 100)
 	}
 
 	function deleteUnit() {
+		// TODO: also manage delete of units
 		dispatch('delete', {
 			id: unit.id
 		})
 	}
 
 	function openModal(theme: Theme) {
+		currentTheme = theme
+
 		editingThemeName = theme.name
 		editingThemeText = theme.text
 		editingThemeImages = theme.images
-		editingThemeIToAdd = unit.images[theme.id].toAdd
-		editingThemeIToRemove = unit.images[theme.id].toRemove
 		editingThemeLinks = theme.links
+		editingThemeITU = theme.itu
+		editingThemeITD = theme.itd
+
 		editModal.showModal()
-		currentTheme = theme
 	}
 
 	function editTheme() {
@@ -65,13 +77,13 @@
 					name: editingThemeName,
 					text: editingThemeText,
 					images: editingThemeImages,
-					links: editingThemeLinks
+					links: editingThemeLinks,
+					itu: editingThemeITU,
+					itd: editingThemeITD
 				}
 			}
 			return t
 		})
-		unit.images[currentTheme.id].toAdd = editingThemeIToAdd
-		unit.images[currentTheme.id].toRemove = editingThemeIToRemove
 		closeModal()
 	}
 
@@ -79,8 +91,8 @@
 		editingThemeName = ''
 		editingThemeText = ''
 		editingThemeImages = []
-		editingThemeIToAdd = []
-		editingThemeIToRemove = []
+		editingThemeITU = []
+		editingThemeITD = []
 		editingThemeLinks = []
 		editModal.close()
 	}
@@ -114,18 +126,10 @@
 			draggedTheme = null
 		}
 	}
-
-	onMount(()=>{
-		for (const theme of unit.themes) {
-			unit.images[theme.id] = {
-				toAdd: [],
-				toRemove: []
-			}
-		}
-	})
 </script>
 
 <dialog bind:this={editModal}>
+	{#if currentTheme}
 	<form class="fcol16" action="">
 		<h1>Editar Tema</h1>
 		<div class="input-field fcol16">
@@ -151,10 +155,11 @@
 		<div class="input-field fcol16">
 			<label for="theme-images">Imágenes:</label>
 			<Images
-				{index}
+				unit={unit.id}
+				theme={currentTheme.id}
 				bind:images={editingThemeImages}
-				bind:imagesToAdd={editingThemeIToAdd}
-				bind:imagesToRemove={editingThemeIToRemove}
+				bind:imagesToAdd={editingThemeITU}
+				bind:imagesToRemove={editingThemeITD}
 			/>
 		</div>
 		<div class="input-field fcol16">
@@ -175,6 +180,7 @@
 			</button>
 		</div>
 	</form>
+	{/if}
 </dialog>
 <article id="unit{index}" class="fcol16">
 	<h1 class="fc">

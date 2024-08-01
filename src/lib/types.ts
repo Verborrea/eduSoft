@@ -21,11 +21,12 @@ export interface Theme {
 	text: string;
 	images: string[];
 	links: Link[];
+	itu: any[];
+	itd: string[];
 }
 
 export interface Unit {
 	id: string;
 	name: string;
 	themes: Theme[];
-	images?: any;
 }
