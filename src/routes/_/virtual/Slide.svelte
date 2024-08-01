@@ -111,6 +111,7 @@
 		font-weight: 500;
 	}
 	p {
+		white-space: pre-wrap;
 		font-size: 18px;
 	}
 	button {

@@ -122,6 +122,9 @@
 </svelte:head>
 
 <main class="super">
+	{#if loading}
+	<div class="loading-background"></div>
+	{/if}
 	<header class="fc justify-between">
 		<h1>Aula Virtual</h1>
 		<div class="fc btns">
