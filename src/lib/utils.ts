@@ -52,3 +52,7 @@ export async function convertImageToWebp(file: File, unit: string, theme: string
         reader.readAsDataURL(file);
     });
 }
+
+export function copyToClipboard(text: string) {
+    navigator.clipboard.writeText(text);
+}

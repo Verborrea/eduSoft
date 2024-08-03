@@ -13,7 +13,6 @@
   div {
     display: flex;
     height: calc(100dvh - 72px);
-    border-top: 2px solid var(--gray-dark);
   }
   div>:global(main) {
     flex: 1;
