@@ -94,6 +94,9 @@
 			button:active {
 				transform: scale(0.95);
 			}
+			input {
+				accent-color: var(--text);
+			}
 			.super {
 				padding: 24px;
 				height: calc(100dvh - 140px);
@@ -109,7 +112,7 @@
 				align-items: center;
 				justify-content: center;
 				gap: 8px;
-				text-decoration: none;
+				text-decoration: none !important;
 				border-radius: 12px;
 				line-height: 24px;
 			}
@@ -287,8 +290,6 @@
 			}
 			/* ----------------- Tables ----------------- */
 			table {
-				width: 90%;
-				margin: 0 auto;
 				padding: 0;
 				box-sizing: border-box;
 				border-collapse: collapse;

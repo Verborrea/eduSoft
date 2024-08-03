@@ -1,13 +1,3 @@
 <svelte:head>
-  <title>eduSoft | Grupos</title>
+	<title>eduSoft | Administrador</title>
 </svelte:head>
-
-<main>
-  
-</main>
-
-<style>
-  main {
-    flex: 1;
-  }
-</style> 

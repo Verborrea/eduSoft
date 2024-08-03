@@ -1,21 +1,22 @@
-<script lang="ts">
-  import HeaderAdmin from '$lib/compo/HeaderAdmin.svelte'
-  import Sidebar from '$lib/compo/Sidebar.svelte'
+<script>
+	import Sidebar from './Sidebar.svelte'
 </script>
 
-<HeaderAdmin/>
-<div>
-  <Sidebar/>
-  <slot/>
+<div class="container">
+	<Sidebar/>
+	<main>
+		<slot/>
+	</main>
 </div>
 
 <style>
-  div {
-    display: flex;
-    height: calc(100dvh - 72px);
-  }
-  div>:global(main) {
-    flex: 1;
-    padding: 24px;
-  }
+	.container {
+		height: 100dvh;
+		display: flex;
+	}
+
+	main {
+		flex: 1;
+		overflow: scroll;
+	}
 </style>
