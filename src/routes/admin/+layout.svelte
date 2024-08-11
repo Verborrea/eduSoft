@@ -17,6 +17,6 @@
 
 	main {
 		flex: 1;
-		overflow: scroll;
+		overflow-y: scroll;
 	}
 </style>

@@ -1,5 +1,5 @@
 <svelte:head>
-	<title>eduSoft | Estudiantes</title>
+	<title>eduSoft | Matricular alumno</title>
 </svelte:head>
 
 <main>
@@ -9,60 +9,73 @@
 	<form action="">
 		<div class="seccion">
 			<h2>Datos personales</h2>
-			<div class="row">
-				<label class="r50">
-					Apellidos y Nombres:
-					<input type="text" id="Name" name="Name" />
+			<div class="row grow">
+				<label class="flex1">
+					Nombres y Apellidos:
+					<input type="text" name="Name" placeholder="Juan Pérez" />
 				</label>
-
-				<label class="r25">
+				<label class="flex1">
 					Fecha de Nacimiento:
-					<input type="date" id="brthDate" name="brthDate" />
+					<input type="date" name="brthDate" />
 				</label>
-
-				<label class="r25">
+				<label class="flex1">
 					DNI:
-					<input type="number" id="dni" name="dni" />
+					<input type="number" name="dni" placeholder="70625795" />
+				</label>
+				<label class="flex1">
+					Género:
+					<select name="">
+						<option value="1" selected> Seleccione una opción </option>
+						<option value="2"> Masculino </option>
+						<option value="3"> Femenino </option>
+					</select>
 				</label>
 			</div>
 			
 			<div class="row">
 				<label class="flex1">
-					Teléfono Celular:
-					<input type="number" />
+					Correo Electrónico:
+					<input type="email" placeholder="juan.perez@ejemplo.com" />
 				</label>
 				<label class="flex1">
-					Correo Electrónico:
-					<input type="email" />
+					Teléfono Celular:
+					<input type="number" placeholder="999 888 777" />
 				</label>
 			</div>
 		
+			<p class="group"> Lugar de Nacimiento: </p>
 			<div class="row">
 				<label class="flex1">
-					Lugar de Nacimiento:
-					<input type="text" />
+					Departamento:
+					<input type="text" placeholder="Arequipa" />
 				</label>
 				<label class="flex1">
-					<input type="text" class="flex1"/>
+					Provincia:
+					<input type="text" class="flex1" placeholder="Islay" />
 				</label>
 				<label class="flex1">
-					<input type="text" class="flex1"/>
+					Distrito:
+					<input type="text" class="flex1" placeholder="Mollendo" />
 				</label>
 			</div>
 			
+			<p class="group">Residencia actual:</p>
 			<div class="row grow" id="resid">
 				<label class="flex1">
-					Residencia actual:
-					<input type="text" />
+					Dirección:
+					<input type="text" placeholder="Residencial Santa Fe" />
 				</label>
 				<label class="flex1">
-					<input type="text" />
+					Departamento:
+					<input type="text" placeholder="Arequipa" />
 				</label>
 				<label class="flex1">
-					<input type="text" />
+					Provincia:
+					<input type="text" placeholder="Arequipa" />
 				</label>
 				<label class="flex1">
-					<input type="text" />
+					Distrito:
+					<input type="text" placeholder="Yanahuara" />
 				</label>
 			</div>
 		</div>
@@ -71,12 +84,12 @@
 			<h2> Educación Previa </h2>
 			<div class="row">
 				<label class="flex1">
-					Colegio
-					<input type="text" />
+					Colegio:
+					<input type="text" placeholder="San Francisco de Asis" />
 				</label>
 				<label class="flex1">
 					Dirección de la IE:
-					<input type="text">
+					<input type="text" placeholder="Calle San Francisco H-2">
 				</label>
 			</div>
 		</div>
@@ -86,15 +99,15 @@
 			<div class="row grow">
 				<label class="flex1">
 					Nombre:
-					<input type="text" />
+					<input type="text" placeholder="María Pérez" />
 				</label>
 				<label class="flex1">
 					Relación:
-					<input type="text" />
+					<input type="text" placeholder="Mamá" />
 				</label>
 				<label class="flex1">
 					Teléfono:
-					<input type="number" />
+					<input type="number" placeholder="987 654 321" />
 				</label>
 			</div>
 		</div>
@@ -102,19 +115,19 @@
 		<div class="seccion">
 		<h2> Documentos </h2>
 			<div class="row">
-				<label>
+				<label class="flex1">
 					Copia DNI:
 					<input type="file" />
 				</label>
-				<label>
+				<label class="flex1">
 					Foto tamaño carnet:
 					<input type="file" />
 				</label>
-				<label>
+				<label class="flex1">
 					Partida de Nacimiento:
 					<input type="file" />
 				</label>
-				<label>
+				<label class="flex1">
 					Certificado de estudios:
 					<input type="file" />
 				</label>
@@ -123,12 +136,12 @@
 
 		<div class="seccion">
 			<h2> Observaciones </h2>
-			<textarea name="" id="">El estudiante es medio loco</textarea>
+			<textarea name="" id="" placeholder="Detalles importantes..."></textarea>
 		</div>
 
-		<div>
-			<button> Cancelar </button>
-			<button> Siguiente </button>
+		<div class="row reverse-row">
+			<button class="btn btn-primary"> Siguiente </button>
+			<button class="btn btn-secondary"> Cancelar </button>
 		</div>
 
 	</form>
@@ -160,20 +173,22 @@
 			gap: 12px;
 			align-items: flex-end;
 	}
+	.reverse-row {
+		flex-direction: row-reverse;
+	}
+	.group {
+		font-size: 18px;
+		font-weight: bold;
+		margin: 16px 0 0 0;
+	}
 	label {
 		font-weight: bold;
 	}
-	input, textarea{
+	input, textarea, select{
 		margin-top: 8px;
 		width: 100%;
 		border-radius: 16px;
 		padding: 8px 16px;
-	}
-	.r50 {
-		width: 50%;
-	}
-	.r25 {
-		width: 25%;
 	}
 	.flex1 {
 		flex: 1;
