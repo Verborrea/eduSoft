@@ -15,7 +15,7 @@
 			Asignar Grupos
 			<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="17" r="3" stroke="var(--text)" stroke-width="2"/><circle cx="18" cy="17" r="3" stroke="var(--text)" stroke-width="2"/><circle cx="12" cy="7" r="3" stroke="var(--text)" stroke-width="2"/></svg>
 		</button>
-		<a href="matricula" class="btn btn-primary">Matricular Estudiante</a>
+		<a href="/admin/alumnos/matricula" class="btn btn-primary">Matricular Estudiante</a>
 	</div>
 </header>
 <div class="table">
