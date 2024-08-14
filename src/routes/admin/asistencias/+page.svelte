@@ -20,11 +20,11 @@
     <tbody>
       <tr>
         <td>
-          <div class="cell-c"> 1 </div>
+          <div class="cell-fc"> 1 </div>
         </td>
         <td> Juan Iñigo Quispe Pérez </td>
         <td>
-          <div class="cell-c">
+          <div class="cell-fc">
             {#if fecha}
             <svg width="10" height="9" viewBox="0 0 10 9" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M9 1L3.5 8L1 6" stroke="#3EDD7D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -42,10 +42,10 @@
           </div>
         </td>
         <td>
-          <div class="cell-c"> Si </div>
+          <div class="cell-fc"> Si </div>
         </td>
         <td>
-          <div class="cell-c"> Si </div>
+          <div class="cell-fc"> Si </div>
         </td>
       </tr>
     </tbody>

@@ -2,7 +2,7 @@
 	<title>eduSoft | Matricular alumno</title>
 </svelte:head>
 
-<main>
+<div class="main">
 	<h1>Matricular Alumno</h1>
 	<h2>1. Actualización de Datos Personales</h2>
 
@@ -26,7 +26,7 @@
 					<span>Género:</span>
 					<div class="select">
 						<select name="">
-							<option value="1" selected> Seleccione una opción </option>
+							<option value="1" selected disabled> Seleccione una opción </option>
 							<option value="2"> Masculino </option>
 							<option value="3"> Femenino </option>
 						</select>
@@ -172,10 +172,10 @@
 			<button class="btn btn-primary">Siguiente</button>
 		</div>
 	</form>
-</main>
+</div>
 
 <style>
-	main {
+	.main {
 		display: flex;
 		flex-direction: column;
 		gap: 24px;

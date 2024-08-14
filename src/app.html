@@ -304,7 +304,7 @@
 				font-size: 14px;
 			}
 			tr {
-				font-weight: 500;
+				font-weight: 400;
 				background: #f5f5f5;
 			}
 			tr:hover {
@@ -330,12 +330,32 @@
 			.cell-l {
 				text-align: left;
 			}
-			.cell-c {
+			.cell-fc {
 				display: flex;
 				flex-direction: row;
 				align-items: center;
 				justify-content: center;
-  }
+  		}
+			.status {
+				padding: 0 12px;
+				border-radius: 100px;
+				line-height: 24px;
+				font-size: 14px;  
+			}
+			.active {
+				background-color: #DEFFA9;
+				color: #8AC926;
+			}
+			.active::before {
+				content: "Activo";
+			}
+			.inactive {
+				background-color: #FFC0C2;
+				color: #FF595E;
+			}
+			.inactive::before {
+				content: "Inactivo";
+			}
 		</style>
 	</head>
 	<body data-sveltekit-preload-data="hover">
