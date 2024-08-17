@@ -2,7 +2,6 @@
 	import { copyToClipboard } from "$lib/utils"
 
 	export let data
-
 </script>
 
 <svelte:head>
@@ -130,17 +129,17 @@
 			<span class="text-blue">x estudiantes seleccionados</span>
 		</div>
 		<div class="fc g8">
-			<button class="btn btn-secondary p10">
+			<a class="btn btn-secondary p10" href="?page={data.page > 1 ? data.page - 1 : data.page}">
 				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M12 6.5L8 10L12 13.5" stroke="#7D7D7D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 				</svg>
-			</button>
-			<span>Página 1 de {data.totalPages}</span>
-			<button class="btn btn-secondary p10">
+			</a>
+			<span>Página {data.page} de {data.totalPages}</span>
+			<a class="btn btn-secondary p10" href="?page={data.page < data.totalPages ? data.page + 1 : data.page}">
 				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M8 6.5L12 10L8 13.5" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 				</svg>
-			</button>
+			</a>
 		</div>
 	</div>
 </div>
