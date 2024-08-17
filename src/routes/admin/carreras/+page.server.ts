@@ -27,5 +27,17 @@ export const actions = {
 			}
 			
 		}
+	},
+	create: async ({ locals, request }) => {
+		const data = await request.formData()
+		const name = data.get('name')?.toString()
+		const sname = data.get('sname')?.toString()
+
+		if (name && name.length > 0 && sname && sname.length > 0) {
+			await locals.pb.collection('careers').create({
+				name,
+				short_name: sname
+			});
+		}
 	}
 }

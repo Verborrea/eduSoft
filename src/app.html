@@ -134,6 +134,10 @@
 			.btn-secondary:hover {
 				background-color: var(--gray-dark);
 			}
+			.btn-secondary:disabled {
+				background-color: var(--gray) !important;
+				color: var(--gray-dark);
+			}
 			.btn-outline {
 				border: 2px solid var(--gray);
 				padding: 8px 22px;
@@ -154,6 +158,15 @@
 				padding: 10px 24px;
 				color: var(--back);
 				justify-content: center;
+			}
+			.btn.green:disabled {
+				background: #d0e8aa;
+			}
+			.btn.red:disabled {
+				background: #FFC6C8;
+			}
+			.btn:disabled:active {
+				transform: scale(1) !important;
 			}
 			/* ============== Inputs ============== */
 			input, textarea, select {
@@ -222,6 +235,9 @@
 				color: var(--blue);
 			}
 			/* ================= Clases útiles ================= */
+			.none {
+				display: none;
+			}
 			.rel {
 				position: relative;
 			}
@@ -335,6 +351,7 @@
 				display: flex;
 				align-items: center;
 				justify-content: center;
+				text-align: center;
   			}
 			.status {
 				padding: 0 12px;
