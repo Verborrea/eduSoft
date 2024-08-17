@@ -124,8 +124,8 @@
 		</table>
 	</div>
 	<div class="justify-between fc">
-		<div class="fc g24">	
-			<span> {data.page} - {data.perPage < data.totalItems ? data.perPage : data.totalItems} de {data.totalItems} estudiantes</span>
+		<div class="fc g24">
+			<span>{data.perPage * (data.page - 1) + 1} - {data.perPage * data.page > data.totalItems ? data.totalItems : data.page * data.perPage} de {data.totalItems} estudiantes</span>
 			<span class="text-blue">x estudiantes seleccionados</span>
 		</div>
 		<div class="fc g8">
