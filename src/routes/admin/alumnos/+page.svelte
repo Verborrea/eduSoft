@@ -118,7 +118,7 @@
 			</thead>
 			<tbody>
 			{#each data.alumnos as alumno}
-			<tr>
+			<tr class:selected={ids.includes(alumno.id)}>
 				<td>
 					<input
 						type="checkbox"
