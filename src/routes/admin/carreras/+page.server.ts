@@ -1,15 +1,11 @@
 export async function load({ locals }) {
 	
 	// fetch a paginated records list
-	const resultList = await locals.pb.collection('students').getList(1, 20, {
-		filter: 'period="2024-2"',
+	const resultList = await locals.pb.collection('careers').getList(1, 20, {
 		sort: 'name',
-		expand: 'user_id,career',
-		perPage: 15
 	});
-	console.log(resultList);
 	return {
-		alumnos: resultList.items,
+		carreras: resultList.items,
 		page: resultList.page,
 		perPage: resultList.perPage,
 		totalItems: resultList.totalItems,

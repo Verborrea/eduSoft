@@ -218,6 +218,9 @@
 			.yellow:hover {
 				background: var(--yellow-dark);
 			}
+			.text-blue {
+				color: var(--blue);
+			}
 			/* ================= Clases útiles ================= */
 			.rel {
 				position: relative;
@@ -228,6 +231,15 @@
 			.fc {
 				display: flex;
 				align-items: center;
+			}
+			.g8 {
+				gap: 8px;
+			}
+			.g24 {
+				gap: 24px;
+			}
+			.p10 {
+				padding: 10px;
 			}
 			.justify-between {
 				justify-content: space-between
@@ -296,6 +308,8 @@
 				padding: 0;
 				box-sizing: border-box;
 				border-collapse: collapse;
+				border-radius: 16px;
+				overflow: hidden;
 			}
 			th {
 				font-weight: bold;
@@ -310,19 +324,6 @@
 			tr:hover {
 				background-color: #E7E7E7;
 			}
-			/* ---- Table border radius ---- */
-			tr:first-child th:first-child {
-				border-top-left-radius: 16px;
-			}
-			tr:first-child th:last-child {
-				border-top-right-radius: 16px;
-			}
-			tr:last-child td:first-child {
-				border-bottom-left-radius: 16px;
-			}
-			tr:last-child td:last-child {
-				border-bottom-right-radius: 16px;
-			}
 			/* --------------------------- */
 			tr > th, td {
 				padding: 8px 16px;
@@ -332,7 +333,6 @@
 			}
 			.cell-fc {
 				display: flex;
-				flex-direction: row;
 				align-items: center;
 				justify-content: center;
   		}
