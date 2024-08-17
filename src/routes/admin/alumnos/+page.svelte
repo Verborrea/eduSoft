@@ -2,6 +2,11 @@
 	import { copyToClipboard } from "$lib/utils"
 
 	export let data
+
+	$:currentPage = data.page
+	function tooglePrevButtn () {
+		return data.page == 1
+	}
 </script>
 
 <svelte:head>
@@ -124,18 +129,18 @@
 		</table>
 	</div>
 	<div class="justify-between fc">
-		<div class="fc g24">
-			<span>{data.perPage * (data.page - 1) + 1} - {data.perPage * data.page > data.totalItems ? data.totalItems : data.page * data.perPage} de {data.totalItems} estudiantes</span>
+		<div class="fc g24">	
+			<span>{data.perPage * (data.page - 1) + 1} - {data.perPage*data.page > data.totalItems ? data.totalItems : data.page*data.perPage} de {data.totalItems} estudiantes</span>
 			<span class="text-blue">x estudiantes seleccionados</span>
 		</div>
 		<div class="fc g8">
-			<a class="btn btn-secondary p10" href="?page={data.page > 1 ? data.page - 1 : data.page}">
+			<a class="btn btn-secondary p10" class:disabled={data.page == 1} href="?page={data.page > 1 ? data.page - 1 : data.page}">
 				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M12 6.5L8 10L12 13.5" stroke="#7D7D7D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-				</svg>
+					<path d="M12 6.5L8 10L12 13.5" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>					
 			</a>
 			<span>Página {data.page} de {data.totalPages}</span>
-			<a class="btn btn-secondary p10" href="?page={data.page < data.totalPages ? data.page + 1 : data.page}">
+			<a class="btn btn-secondary p10" class:disabled={data.page == data.totalPages} href="?page={data.page < data.totalPages ? data.page + 1 : data.page}">
 				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M8 6.5L12 10L8 13.5" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 				</svg>
@@ -169,5 +174,8 @@
 	}
 	button.fc:hover {
 		text-decoration: underline;
+	}
+	.disabled > svg > path{
+		stroke: #B4B4B4;
 	}
 </style>
