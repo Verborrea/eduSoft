@@ -9,7 +9,7 @@
 <div class="main">
 	<header class="fc justify-between">
 		<h1>Cursos</h1>
-		<a href="#" class="btn btn-primary">Nuevo Curso</a>
+		<a href="/admin/cursos/añadir" class="btn btn-primary">Nuevo Curso</a>
 	</header>
 	<div class="fc btns g24">
 		<div class="input">

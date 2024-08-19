@@ -30,3 +30,9 @@ export interface Unit {
 	name: string;
 	themes: Theme[];
 }
+
+export interface Career {
+	id: string;
+	name: string;
+	short_name: string;
+}

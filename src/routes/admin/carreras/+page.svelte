@@ -1,10 +1,51 @@
 <script lang="ts">
+	import type { Career } from '$lib/types'
 	export let data
+
+	let editModal: any
+	let currentCareer: Career
+	let editingCareerName: string
+	let editingCarrerShortName: string
+	
+	function openModal(career: Career) {
+		currentCareer = career
+
+		editingCareerName = career.name
+		editingCarrerShortName = career.short_name
+
+		editModal.showModal()
+	}
+
+	function closeModal() {
+
+		editModal.close()
+	}
 </script>
 
 <svelte:head>
 	<title>eduSoft | Carreras</title>
 </svelte:head>
+
+<dialog bind:this={editModal}>
+	<form class="fcol16" action="">
+		<h1>Editar Carrera</h1>
+		<div class="input-field fcol16">
+			<label for="">Nombre Completo:</label>
+			<input class="input" type="text" bind:value={editingCareerName}>
+		</div>
+		<div class="input-field fcol16">
+			<label for="">Nombre Corto:</label>
+			<input class="input" type="text" bind:value={editingCarrerShortName}>
+		</div>
+		<div class="dialog-buttons">
+			<button class="btn btn-secondary" on:click={closeModal}>Cancelar</button>
+			<button type="submit" class="btn btn-primary">
+				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 6V15.5C17 15.9125 16.8531 16.2656 16.5594 16.5594C16.2656 16.8531 15.9125 17 15.5 17H4.5C4.0875 17 3.73437 16.8531 3.44062 16.5594C3.14687 16.2656 3 15.9125 3 15.5V4.5C3 4.0875 3.14687 3.73438 3.44062 3.44063C3.73437 3.14688 4.0875 3 4.5 3H14L17 6ZM10 14.75C10.625 14.75 11.1562 14.5312 11.5938 14.0938C12.0312 13.6562 12.25 13.125 12.25 12.5C12.25 11.875 12.0312 11.3438 11.5938 10.9062C11.1562 10.4688 10.625 10.25 10 10.25C9.375 10.25 8.84375 10.4688 8.40625 10.9062C7.96875 11.3438 7.75 11.875 7.75 12.5C7.75 13.125 7.96875 13.6562 8.40625 14.0938C8.84375 14.5312 9.375 14.75 10 14.75ZM5.5 8.5H12.5V5.5H5.5V8.5Z" fill="white"/></svg>
+				Guardar
+			</button>
+		</div>
+	</form>
+</dialog>
 
 <div class="main">
 	<header class="fc">
@@ -48,11 +89,11 @@
 				</td>
 				<td>
 					<div class="cell-fc">
-						<a href="/">
+						<button on:click={e => openModal(carrera)}>
 							<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path fill-rule="evenodd" clip-rule="evenodd" d="M11.0775 3.57749C11.4263 3.21697 11.8434 2.92949 12.3044 2.7318C12.7655 2.53411 13.2613 2.43017 13.7629 2.42603C14.2645 2.42189 14.762 2.51765 15.2262 2.7077C15.6905 2.89776 16.1122 3.17832 16.4669 3.53304C16.8217 3.88776 17.1022 4.30953 17.2923 4.77377C17.4823 5.23802 17.5781 5.73545 17.5739 6.23708C17.5698 6.73871 17.4659 7.23449 17.2682 7.69554C17.0705 8.15659 16.783 8.57367 16.4225 8.92249L15.5892 9.75582L9.67749 15.6675C9.06349 16.2813 8.27306 16.6881 7.41665 16.8308L3.46999 17.4892C3.33918 17.5109 3.20508 17.501 3.07884 17.4605C2.95259 17.4199 2.83785 17.3499 2.74413 17.2561C2.65041 17.1623 2.58043 17.0474 2.53999 16.9212C2.49956 16.7949 2.48985 16.6608 2.51165 16.53L3.16915 12.5833C3.31191 11.7269 3.71863 10.9365 4.33249 10.3225L11.0775 3.57749ZM10.8333 6.17832L5.51165 11.5008C5.14319 11.8692 4.89903 12.3435 4.81332 12.8575L4.34665 15.6533L7.14249 15.1867C7.65633 15.1012 8.13064 14.8573 8.49915 14.4892L13.8217 9.16666L10.8333 6.17832ZM15 7.98833L12.0117 4.99999L12.2558 4.75582C12.6542 4.36981 13.1884 4.15591 13.7431 4.16028C14.2978 4.16465 14.8285 4.38695 15.2208 4.77919C15.613 5.17144 15.8353 5.70219 15.8397 6.25689C15.8441 6.81159 15.6302 7.34578 15.2442 7.74416L15 7.98833Z" fill="#F2BD2C"/>
 							</svg>						
-						</a>
+						</button>
 					</div>
 					</td>
 				<td>
@@ -104,5 +145,17 @@
 	}
 	.upbar {
 		display: flex;
+	}
+	dialog {
+	  padding: 24px;
+		border-radius: 16px;
+		border: none;
+		width: calc(100% - 32px);
+    	max-width: 622px;
+	}
+	.dialog-buttons {
+		display: flex;
+		justify-content: flex-end;
+		gap: 12px;
 	}
 </style>
