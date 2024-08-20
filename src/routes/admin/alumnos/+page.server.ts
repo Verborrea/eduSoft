@@ -1,11 +1,18 @@
 export async function load({ locals, url }) {
 
+	let query = url.searchParams.get('query')
 	let page = parseInt(url.searchParams.get('page') || "1")
+
+	let filter = 'period="2024-2"'
+
+	if (query) {
+		filter += `&&name~"${query}"`
+	}
 	
-	const resultList = await locals.pb.collection('students').getList(page, 3, {
-		filter: 'period="2024-2"',
+	const resultList = await locals.pb.collection('students').getList(page, 10, {
+		filter,
 		sort: 'name',
-		expand: 'user_id,career'
+		expand: 'user_id,career',
 	});
 
 	return {

@@ -17,12 +17,18 @@
 		<a href="/admin/alumnos/matricula" class="btn btn-primary">Matricular Estudiante</a>
 	</header>
 	<div class="fc btns">
-		<div class="input">
+		<form method="get" class="input">
 			<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 9.16666C1.5 4.93248 4.93248 1.5 9.16666 1.5C13.4009 1.5 16.8334 4.93247 16.8334 9.16666C16.8334 10.9233 16.2426 12.542 15.2489 13.8348L18.2071 16.793C18.5976 17.1835 18.5976 17.8167 18.2071 18.2072C17.8166 18.5978 17.1834 18.5978 16.7929 18.2072L13.8346 15.249C12.5419 16.2426 10.9233 16.8334 9.16666 16.8334C4.93247 16.8334 1.5 13.4009 1.5 9.16666ZM13.2559 13.0897C13.2254 13.1138 13.196 13.1399 13.1679 13.168C13.1398 13.1961 13.1137 13.2255 13.0896 13.256C12.0715 14.233 10.6892 14.8334 9.16666 14.8334C6.03705 14.8334 3.5 12.2963 3.5 9.16666C3.5 6.03705 6.03705 3.5 9.16666 3.5C12.2963 3.5 14.8334 6.03705 14.8334 9.16666C14.8334 10.6892 14.2329 12.0716 13.2559 13.0897Z" fill="#111111"/>
 			</svg>
-			<input type="text" placeholder="Buscar estudiantes">
-		</div>
+			<input type="text" name="query" placeholder="Buscar estudiantes">
+		</form>
+		<form method="get" class="btn btn-primary" action="/admin/alumnos">
+			<input type="text" name="query" value="" class="none">
+			<button title="Refrescar" type="submit">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" class="icon-md-heavy"><path fill="white" d="M3.07 10.876C3.623 6.436 7.41 3 12 3a9.15 9.15 0 0 1 6.012 2.254V4a1 1 0 1 1 2 0v4a1 1 0 0 1-1 1H15a1 1 0 1 1 0-2h1.957A7.15 7.15 0 0 0 12 5a7 7 0 0 0-6.946 6.124 1 1 0 1 1-1.984-.248m16.992 1.132a1 1 0 0 1 .868 1.116C20.377 17.564 16.59 21 12 21a9.15 9.15 0 0 1-6-2.244V20a1 1 0 1 1-2 0v-4a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2H7.043A7.15 7.15 0 0 0 12 19a7 7 0 0 0 6.946-6.124 1 1 0 0 1 1.116-.868"></path></svg>
+			</button>
+		</form>
 		<div class="fc g8">
 			<button type="button" class="btn btn-secondary" disabled={ids.length === 0}>
 				Asignar Grupos

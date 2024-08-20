@@ -39,5 +39,18 @@ export const actions = {
 				short_name: sname
 			});
 		}
+	},
+	edit: async ({ locals, request }) => {
+		const data = await request.formData()
+		const id = data.get('id')?.toString()
+		const name = data.get('name')?.toString()
+		const sname = data.get('sname')?.toString()
+
+		if (name && name.length > 0 && sname && sname.length > 0) {
+			await locals.pb.collection('careers').update(id, {
+				name,
+				short_name: sname
+			});
+		}
 	}
 }
