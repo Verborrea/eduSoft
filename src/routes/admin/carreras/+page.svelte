@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Career } from '$lib/types'
 
-	export let data, form
+	export let data
 
 	let editModal: any
 	let currentCareer: Career
@@ -160,6 +160,9 @@
 		display: flex;
 		justify-content: flex-end;
 		gap: 12px;
+	}
+	.disabled:hover {
+		background-color: var(--gray);
 	}
 	.disabled path{
 		stroke: #B4B4B4;

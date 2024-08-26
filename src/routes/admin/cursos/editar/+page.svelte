@@ -7,26 +7,26 @@
 </script>
 
 <svelte:head>
-  <title>eduSoft | Añadir Curso</title>
+  <title>eduSoft | Editar Curso</title>
 </svelte:head>
 
 <div class="main">
 	<header class="flex g16">
 		<button on:click={volver} type="button" class="prev"><h1>Cursos</h1></button>
 		<svg width="13" height="20" viewBox="0 0 13 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.63182 10.1778L0 3.39862L2.85934 0.60144L12.2275 10.1778L3.20716 19.3986L0.347826 16.6014L6.63182 10.1778Z" fill="#B4B4B4"/></svg>
-		<h1>Añadir Curso</h1>
+		<h1>{data.course.name}</h1>
 	</header>
 
 	<form method="post" class="fcol24">
+		<input type="text" class="none" name="id" value={data.course.id}>
 		<label>
 			Nombre:
-			<input name="name" class="input" type="text" placeholder="Ej. Auditoría y Negocios" required>
+			<input name="name" class="input" type="text" placeholder="Ej. Auditoría y Negocios" required value={data.course.name}>
 		</label>
 		<label class="flex1">
 			Módulo:
 			<div class="select">
-				<select name="module" required>
-					<option value="" selected disabled> Ej. VII</option>
+				<select name="module" required value={data.course.module}>
 					<option value="I">I</option>
 					<option value="II">II</option>
 					<option value="III">III</option>
@@ -43,8 +43,7 @@
 		<label>
 			Carrera:
 			<div class="select">
-				<select name="career" required>
-				<option value="" selected disabled>Seleccione una carrera</option>
+				<select name="career" required value={data.course.career}>
 				{#each data.careers as career}       
 					<option value={career.id}> {career.short_name} </option>
 				{/each}
@@ -53,7 +52,7 @@
 		</label>
 		<label>
 			Descripción:
-			<textarea name="description" class="input" placeholder="¿Sobre qué trata este curso?" rows=4></textarea>
+			<textarea name="description" class="input" placeholder="¿Sobre qué trata este curso?" rows=4 value={data.course.description}></textarea>
 		</label>
 		<div class="flex justify-end g12">
 			<button class="btn btn-secondary" type="button" on:click={volver}>Cancelar</button>

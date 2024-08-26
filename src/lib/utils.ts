@@ -56,3 +56,22 @@ export async function convertImageToWebp(file: File, unit: string, theme: string
 export function copyToClipboard(text: string) {
     navigator.clipboard.writeText(text);
 }
+
+export function formDataToObject(formData: FormData) {
+    const obj: any = {};
+    
+    formData.forEach((value, key) => {
+      // Check if the key already exists in the object
+      if (obj[key]) {
+        // If it exists and is not an array, convert it to an array
+        if (!Array.isArray(obj[key])) {
+          obj[key] = [obj[key]];
+        }
+        obj[key].push(value); // Push the new value to the array
+      } else {
+        obj[key] = value; // Otherwise, just set the value
+      }
+    });
+    
+    return obj;
+  }
