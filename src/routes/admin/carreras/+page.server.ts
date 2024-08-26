@@ -42,15 +42,20 @@ export const actions = {
 	},
 	edit: async ({ locals, request }) => {
 		const data = await request.formData()
-		const id = data.get('id')?.toString()
-		const name = data.get('name')?.toString()
-		const sname = data.get('sname')?.toString()
+
+		const id = data.get('id')?.toString() || ''
+		const name = data.get('o_name')?.toString() || ''
+		const sname = data.get('abrv')?.toString() || ''
 
 		if (name && name.length > 0 && sname && sname.length > 0) {
-			await locals.pb.collection('careers').update(id, {
+			const record = await locals.pb.collection('careers').update(id, {
 				name,
 				short_name: sname
 			});
+
+			console.log(record)
 		}
+
+		return { id, name, sname }
 	}
 }

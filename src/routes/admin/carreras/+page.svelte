@@ -1,15 +1,18 @@
 <script lang="ts">
 	import type { Career } from '$lib/types'
-	export let data
+
+	export let data, form
 
 	let editModal: any
 	let currentCareer: Career
+	let editingCareerId: string
 	let editingCareerName: string
 	let editingCarrerShortName: string
 	
-	function openModal(career: Career) {
+	function openModal(career: any) {
 		currentCareer = career
 
+		editingCareerId = career.id
 		editingCareerName = career.name
 		editingCarrerShortName = career.short_name
 
@@ -17,7 +20,6 @@
 	}
 
 	function closeModal() {
-
 		editModal.close()
 	}
 </script>
@@ -27,15 +29,16 @@
 </svelte:head>
 
 <dialog bind:this={editModal}>
-	<form class="fcol16" action="">
+	<form class="fcol16" action="?/edit" method="post">
 		<h1>Editar Carrera</h1>
+		<input class="none" type="text" name="id" value={editingCareerId}>
 		<div class="input-field fcol16">
-			<label for="">Nombre Completo:</label>
-			<input class="input" type="text" bind:value={editingCareerName}>
+			<label for="o_name">Nombre Oficial:</label>
+			<input name="o_name" class="input" type="text" bind:value={editingCareerName}>
 		</div>
 		<div class="input-field fcol16">
-			<label for="">Nombre Corto:</label>
-			<input class="input" type="text" bind:value={editingCarrerShortName}>
+			<label for="abrv">Abreviación:</label>
+			<input name="abrv" class="input" type="text" bind:value={editingCarrerShortName}>
 		</div>
 		<div class="dialog-buttons">
 			<button class="btn btn-secondary" on:click={closeModal}>Cancelar</button>
@@ -67,8 +70,8 @@
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>NOMBRE COMPLETO</th>
-					<th>NOMBRE CORTO</th>
+					<th>NOMBRE OFICIAL</th>
+					<th>ABREVIACIÓN</th>
 					<th>FECHA DE CREACIÓN</th>
 					<th>EDITAR</th>
 					<th>BORRAR</th>
@@ -118,17 +121,17 @@
 			<span> {data.page} - {data.perPage < data.totalItems ? data.perPage : data.totalItems} de {data.totalItems} carreras</span>
 		</div>
 		<div class="fc g8">
-			<button class="btn btn-secondary p10">
+			<a class="btn btn-secondary p10" class:disabled={data.page == 1} href="?page={data.page > 1 ? data.page - 1 : data.page}">
 				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M12 6.5L8 10L12 13.5" stroke="#7D7D7D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-				</svg>
-			</button>
-			<span>Página 1 de 3</span>
-			<button class="btn btn-secondary p10">
+					<path d="M12 6.5L8 10L12 13.5" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>					
+			</a>
+			<span>Página {data.page} de {data.totalPages}</span>
+			<a class="btn btn-secondary p10" class:disabled={data.page == data.totalPages} href="?page={data.page < data.totalPages ? data.page + 1 : data.page}">
 				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M8 6.5L12 10L8 13.5" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 				</svg>
-			</button>
+			</a>
 		</div>
 	</div>
 </div>
@@ -157,5 +160,8 @@
 		display: flex;
 		justify-content: flex-end;
 		gap: 12px;
+	}
+	.disabled path{
+		stroke: #B4B4B4;
 	}
 </style>
