@@ -63,13 +63,13 @@
 				</svg>
 				FILTRAR
 			</button>
-			<select id="career" name="career" class="select select-bordered" bind:value={career}>
+			<select id="career" name="career" class="select" bind:value={career}>
 				<option value="" selected>Todas las carreras</option>
 				{#each data.careers as career}
 					<option value={career.id}>{career.short_name}</option>
 				{/each}
 			</select>
-			<select id="module" name="module" class="select select-bordered" bind:value={module}>
+			<select id="module" name="module" class="select" bind:value={module}>
 				<option value="" selected>Todos los módulos</option>
 				{#each data.modules as mod}
 					<option value={mod}>Módulo {mod}</option>
@@ -145,13 +145,13 @@
 			de
 			{data.totalItems}
 		</p>
-		<p class="text-blue">{selection.length} cursos seleccionados</p>
+		<p class="text-blue">{selection.length} curso{selection.length === 1 ? '': 's'} seleccionado{selection.length === 1 ? '': 's'}</p>
 		<div class="fc g16">
 			<form>
 				<button
 					title="Página anterior"
 					type="submit"
-					class="btn"
+					class="btn btn-square"
 					disabled={data.page == 1}
 					on:click={() => {
 						selection = [];
@@ -173,7 +173,7 @@
 				<button
 					title="Página siguiente"
 					type="submit"
-					class="btn"
+					class="btn btn-square"
 					disabled={data.page == data.totalPages}
 					on:click={() => {
 						selection = [];

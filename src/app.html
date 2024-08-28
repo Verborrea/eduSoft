@@ -124,31 +124,35 @@
 				text-decoration: none !important;
 				border-radius: 10px;
 				line-height: 24px;
-				padding: 10px;
+				padding: 10px 16px;
 				background: var(--neutral-300);
+			}
+			.btn-square {
+				padding: 10px;
+			}
+			.btn:hover {
+				background-color: color-mix(in srgb, var(--neutral-300) 80%, black)
 			}
 			.btn-primary {
 				background-color: var(--primary);
 				color: var(--back);
-				padding: 10px 16px;
 			}
 			.btn-primary:hover {
 				background-color: color-mix(in srgb, var(--primary) 80%, black)
 			}
-			.btn-primary:disabled {
-				background-color: var(--inactive);
-			}
 			.btn-secondary {
 				color: white;
 				background-color: var(--secondary);
-				padding: 10px 16px;
 			}
 			.btn-secondary:hover {
 				background-color: color-mix(in srgb, var(--secondary) 80%, black)
 			}
-			.btn-secondary:disabled {
-				background-color: var(--gray) !important;
-				color: var(--gray-dark);
+			.btn-error {
+				color: white;
+				background: var(--red);
+			}
+			.btn-error:hover {
+				background-color: color-mix(in srgb, var(--red) 80%, black)
 			}
 			.btn-outline {
 				border: 2px solid var(--gray);
@@ -165,12 +169,6 @@
 			.btn-outline-red:hover {
 				background: var(--red);
 				color: var(--back);
-			}
-			.btn.green, .btn-error {
-				padding: 10px 16px;
-				color: var(--back);
-				background: var(--red);
-				justify-content: center;
 			}
 			.btn:disabled:active {
 				transform: scale(1) !important;
@@ -191,7 +189,7 @@
 			.input {
 				border-radius: 12px;
 				padding: 10px 16px;
-				background-color: var(--gray);
+				background-color: var(--neutral-300);
 				display: flex;
 				align-items: center;
 				gap: 8px;
