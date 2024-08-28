@@ -2,7 +2,7 @@
 	<title>eduSoft | Matricular alumno</title>
 </svelte:head>
 
-<script>
+<script lang="ts">
 	import Paso1 from './Paso_1.svelte'
 	import Paso2 from './Paso_2.svelte'
 	import Paso3 from './Paso_3.svelte'
@@ -10,18 +10,18 @@
 
 	let step = 0
 	let formAppend
-	let formData
+	let formData: any;
 
-	function handlePages(event) {
+	function handlePages(event: any) {
 		step = event.detail.page
 	}
-	function submitFormData(event) {
+	function submitFormData(event: any) {
 		formData = event.detail.formData
 		for (let [key, value] of formData.entries()) {
 			console.log(`${key}: ${value}`);
 		}
 	}
-	function appendFormData(event) {
+	function appendFormData(event: any) {
 		formAppend = event.detail.formAppend
 		for (let [key, value] of formAppend.entries()) {
 			formData.append(key, value)

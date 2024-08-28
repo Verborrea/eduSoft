@@ -57,7 +57,7 @@
 		<h1>Carreras Profesionales</h1>
 	</header>
 
-	<form class="upbar g24" action="?/create" method="post">
+	<form class="fc g16" action="?/create" method="post">
 		<input type="text" class="input" name="name" placeholder="Nombre Oficial">
 		<input type="text" class="input" name="sname" placeholder="Abreviación">
 		<button class="btn btn-primary">
@@ -171,9 +171,6 @@
 	}
 	h1 {
 		margin: 0;
-	}
-	.upbar {
-		display: flex;
 	}
 	.edit, .remove {
 		display: none;

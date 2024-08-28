@@ -21,11 +21,9 @@
 		<div class="row">
 			<label class="flex1">
 				<span>Especialidad (Carrera)</span>
-				<div class="select">
-					<select name="carrera">
-						<option value="0" selected disabled> Seleccione una opción </option>
-					</select>
-				</div>
+				<select name="carrera" class="select">
+					<option value="0" selected disabled> Seleccione una opción </option>
+				</select>
 			</label>
 			<label class="flex1">
 				Módulo:
@@ -34,11 +32,9 @@
 		</div>
 		<label class="flex1">
 			<span>Grupo:</span>
-			<div class="select">
-				<select name="grupo">
-					<option value="0" selected disabled> Seleccione una opción </option>
-				</select>
-			</div>
+			<select name="grupo" class="select">
+				<option value="0" selected disabled> Seleccione una opción </option>
+			</select>
 		</label>
   </div>
   <div class="row end">			
@@ -81,12 +77,5 @@
 		width: 100%;
 		border-radius: 12px;
 		padding: 10px 16px;
-	}
-	.select {
-		padding: 0;
-		border-radius: 0;
-	}
-	select {
-		width: 100%;
 	}
 </style>

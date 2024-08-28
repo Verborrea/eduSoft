@@ -5,6 +5,9 @@
 
 	let query = '';
 	let period = '';
+	let status = '';
+	let career = '';
+	let group = '';
 	let selection: string[] = [];
 
 	function selectAll() {
@@ -31,13 +34,16 @@
 		<h1>Lista de Estudiantes</h1>
 		<a href="/admin/alumnos/matricula" class="btn btn-primary">Matricular Estudiante</a>
 	</header>
-	<div class="fc btns">
+	<div class="fc g16">
 		<form class="fc g16 grow">
-			<label class="input" for="query">
+			<label class="input grow" for="query">
 				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 9.16666C1.5 4.93248 4.93248 1.5 9.16666 1.5C13.4009 1.5 16.8334 4.93247 16.8334 9.16666C16.8334 10.9233 16.2426 12.542 15.2489 13.8348L18.2071 16.793C18.5976 17.1835 18.5976 17.8167 18.2071 18.2072C17.8166 18.5978 17.1834 18.5978 16.7929 18.2072L13.8346 15.249C12.5419 16.2426 10.9233 16.8334 9.16666 16.8334C4.93247 16.8334 1.5 13.4009 1.5 9.16666ZM13.2559 13.0897C13.2254 13.1138 13.196 13.1399 13.1679 13.168C13.1398 13.1961 13.1137 13.2255 13.0896 13.256C12.0715 14.233 10.6892 14.8334 9.16666 14.8334C6.03705 14.8334 3.5 12.2963 3.5 9.16666C3.5 6.03705 6.03705 3.5 9.16666 3.5C12.2963 3.5 14.8334 6.03705 14.8334 9.16666C14.8334 10.6892 14.2329 12.0716 13.2559 13.0897Z" fill="#111111"/>
 				</svg>
 				<input type="text" class="hidden" name="period" value={period} />
+				<input type="text" class="hidden" name="status" value={status} />
+				<input type="text" class="hidden" name="career" value={career} />
+				<input type="text" class="hidden" name="group" value={group} />
 				<input
 					id="query"
 					type="text"
@@ -68,41 +74,41 @@
 					Dar de Baja
 				</button>
 			</form>
-			
 		</div>
 	</div>
-	<div class="fc g8">
-		FILTROS:
-		<div class="select">
-			<select name="">
-				<option value="" selected disabled>Estado</option>
-				<option value="">Activo</option>
-				<option value="">Inactivo</option>
-			</select>
-		</div>
-		<div class="select">
-			<select name="">
-				<option value="" selected disabled>Periodo</option>
-				<option value="">2024-2</option>
-			</select>
-		</div>
-		<div class="select">
-			<select name="">
-				<option value="" selected disabled>Carrera</option>
-				<option value="">Maquinaria Pesada</option>
-				<option value="">Seguridad Minera</option>
-				<option value="">Topografía</option>
-				<option value="">Computación e Informática</option>
-				<option value="">Administración</option>
-				<option value="">Contabilidad</option>
-			</select>
-		</div>
-		<div class="select">
-			<select name="">
-				<option value="">Grupo</option>
-			</select>
-		</div>
-	</div>
+	<form id="filters" class="fc g16">
+		<input type="text" class="hidden" name="query" value={query} />
+		<button class="btn btn-primary">
+			<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M10.3485 17.365C9.83539 17.365 9.40579 16.9555 9.40579 16.4383V12.9267C9.40579 12.4116 9.82633 12 10.3398 12C10.8533 12 11.2708 12.4122 11.2708 12.9267V13.75H16.3383C16.8524 13.75 17.2708 14.1553 17.2708 14.6723C17.2708 15.1853 16.8612 15.615 16.3441 15.615H11.2708V16.4383C11.2708 16.9532 10.8646 17.365 10.3485 17.365ZM3.65579 15.615C3.14068 15.615 2.72913 15.1945 2.72913 14.6811C2.72913 14.1674 3.14132 13.75 3.65579 13.75H7.16746C7.68212 13.75 8.09413 14.1563 8.09413 14.6723C8.09413 15.1853 7.68449 15.615 7.16746 15.615H3.65579ZM6.67183 12.6767C6.1586 12.6767 5.72913 12.2524 5.72913 11.7381V10.9267H3.66121C3.14727 10.9267 2.72913 10.5211 2.72913 10.0044C2.72913 9.48893 3.13924 9.07334 3.65579 9.07334H5.72913V8.25001C5.72913 7.73504 6.1498 7.32334 6.66308 7.32334C7.17667 7.32334 7.59413 7.73556 7.59413 8.25001V11.75C7.59413 12.2647 7.18777 12.6767 6.67183 12.6767ZM9.83246 10.9267C9.31783 10.9267 8.90579 10.5203 8.90579 10.0044C8.90579 9.48893 9.31591 9.07334 9.83246 9.07334H16.3441C16.8588 9.07334 17.2708 9.47968 17.2708 9.99564C17.2708 10.5111 16.8607 10.9267 16.3441 10.9267H9.83246ZM12.8485 8.00001C12.3356 8.00001 11.9058 7.59036 11.9058 7.07334V3.56168C11.9058 3.04657 12.3263 2.63501 12.8398 2.63501C13.3534 2.63501 13.7708 3.04721 13.7708 3.56168V4.38501H16.3441C16.8589 4.38501 17.2708 4.79118 17.2708 5.3073C17.2708 5.82014 16.861 6.25001 16.3441 6.25001H13.7708V7.07334C13.7708 7.58799 13.3644 8.00001 12.8485 8.00001ZM3.65579 6.25001C3.14081 6.25001 2.72913 5.82937 2.72913 5.31605C2.72913 4.80241 3.14129 4.38501 3.65579 4.38501H10.1675C10.6822 4.38501 11.0941 4.79118 11.0941 5.3073C11.0941 5.82014 10.6844 6.25001 10.1675 6.25001H3.65579Z" fill="currentColor"/>
+			</svg>
+			FILTRAR
+		</button>
+		<select id="status" name="status" class="select" bind:value={status}>
+			<option value="" selected>Todos los estados</option>
+			{#each data.estados as estado}
+				<option value={estado}>{estado}</option>
+			{/each}
+		</select>
+		<select id="period" name="period" class="select" bind:value={period}>
+			<option value="" selected>Todos los periodos</option>
+			{#each data.periods as period}
+				<option value={period}>{period}</option>
+			{/each}
+		</select>
+		<select id="career" name="career" class="select" bind:value={career}>
+			<option value="" selected>Todas las carreras</option>
+			{#each data.careers as career}
+				<option value={career.id}>{career.short_name}</option>
+			{/each}
+		</select>
+		<select id="group" name="group" class="select" bind:value={group}>
+			<option value="" selected>Todos los grupos</option>
+			{#each data.groups as group}
+				<option value={group.id}>{group.name}</option>
+			{/each}
+		</select>
+	</form>
 	<table>
 		<thead>
 			<tr>
@@ -207,11 +213,19 @@
 				>
 				<input type="text" class="hidden" name="page" value={data.page - 1} />
 				<input type="text" class="hidden" name="period" value={period} />
+				<input type="text" class="hidden" name="status" value={status} />
+				<input type="text" class="hidden" name="career" value={career} />
+				<input type="text" class="hidden" name="group" value={group} />
+				<input type="text" class="hidden" name="query" value={query} />
 			</form>
 			<p>Página {data.page} de {data.totalPages}</p>
 			<form>
 				<input type="text" class="hidden" name="page" value={data.page + 1}/>
 				<input type="text" class="hidden" name="period" value={period} />
+				<input type="text" class="hidden" name="status" value={status} />
+				<input type="text" class="hidden" name="career" value={career} />
+				<input type="text" class="hidden" name="group" value={group} />
+				<input type="text" class="hidden" name="query" value={query} />
 				<button
 					title="Página siguiente"
 					type="submit"
@@ -241,15 +255,8 @@
 	h1 {
 		margin: 0;
 	}
-	.btns {
-		width: 100%;
-		gap: 24px;
-	}
-	.btns .input {
-		flex: 1;
-	}
-	.svg-container {
-		justify-content: center;
+	#filters {
+		width: fit-content;
 	}
 	button.fc {
 		color: var(--blue);

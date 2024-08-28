@@ -1,7 +1,7 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
 
-  let form
+  let form: any
   const dispatch = createEventDispatcher()
   
   function nextPage() {
@@ -15,7 +15,7 @@
 	}
 
   let selectImage: any = null
-  function handleFileChange(event) {
+  function handleFileChange(event: any) {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader()
@@ -53,13 +53,11 @@
         </label>
         <label class="flex1">
           <span>Género:</span>
-          <div class="select">
-            <select name="gender">
+            <select name="gender" class="select">
               <option value="0" selected disabled> Seleccione una opción </option>
               <option value="Masculino"> Masculino </option>
               <option value="Femenino"> Femenino </option>
             </select>
-          </div>
         </label>
       </div>
     </div>
@@ -253,13 +251,6 @@
 		width: 100%;
 		border-radius: 12px;
 		padding: 10px 16px;
-	}
-	.select {
-		padding: 0;
-		border-radius: 0;
-	}
-	select {
-		width: 100%;
 	}
 	input[type=file] {
 		display: none;

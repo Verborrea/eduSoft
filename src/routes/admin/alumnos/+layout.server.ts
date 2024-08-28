@@ -5,6 +5,18 @@ export async function load({ locals }) {
 		fields: 'id,short_name'
 	});
 
+	const data_groups = await locals.pb.collection('groups').getFullList({
+		expand: 'course',
+		fields: 'id,turno,seccion,expand.course.name'
+	});
+
+	const groups = data_groups.map(g => { return {
+		id: g.id,
+		name: `${g.expand?.course.name} ${g.turno} ${g.seccion}`
+	}})
+
+	console.log(groups)
+
 	const estados = [ 'Activo', 'Inactivo' ]
 	const periods = [ '2024-II', '2025-I' ]
 
@@ -12,6 +24,7 @@ export async function load({ locals }) {
 	return {
 		careers,
 		estados,
-		periods
+		periods,
+		groups
 	};
 };

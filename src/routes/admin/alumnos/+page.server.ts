@@ -4,10 +4,13 @@ export async function load({ locals, url }) {
 	const perPage = 10
 	const query = url.searchParams.get('query')
 	const period = url.searchParams.get('period')
+	const career = url.searchParams.get('career')
+	const group = url.searchParams.get('group')
+	const status = url.searchParams.get('status')
 
 	
 	// Filter Logic ~
-	let filters: string[] = ['']
+	let filters: string[] = []
 
 	if (query) {
 		filters.push(`name ~ "${query}"`)
@@ -15,6 +18,14 @@ export async function load({ locals, url }) {
 
 	if (period) {
 		filters.push(`period = "${period}"`)
+	}
+
+	if (career) {
+		filters.push(`career = "${career}"`)
+	}
+
+	if (status) {
+		filters.push(`status = ${status === 'Activo'}`)
 	}
 
 
