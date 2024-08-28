@@ -54,8 +54,6 @@ export const actions = {
 				name,
 				short_name: sname
 			});
-
-			console.log(record)
 		}
 
 		return { id, name, sname }

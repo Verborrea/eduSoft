@@ -2,25 +2,25 @@ export async function load({ locals, url }) {
 
 	const page = parseInt(url.searchParams.get('page') ?? '1')
 	const perPage = 10
-	const query = url.searchParams.get('query')
-	// const mod = url.searchParams.get('module')
-	// const career = url.searchParams.get('career')
+	// const query = url.searchParams.get('query')
+	const period = url.searchParams.get('period')
+	const course = url.searchParams.get('course')
 	
 
 	// Filter Logic ~
 	let filters: string[] = []
 
-	if (query) {
-		filters.push(`name ~ "${query}"`)
-	}
+	// if (query) {
+	// 	filters.push(`name ~ "${query}"`)
+	// }
 
-	// if (mod) {
-	// 	filters.push(`module = "${mod}"`)
-	// }
+	if (period) {
+		filters.push(`period = "${period}"`)
+	}
 	
-	// if (career) {
-	// 	filters.push(`career = "${career}"`)
-	// }
+	if (course) {
+		filters.push(`course = "${course}"`)
+	}
 
 	// Get Data from DB
 	const resultList = await locals.pb.collection('groups').getList(page, perPage, {

@@ -1,22 +1,32 @@
 export async function load({ locals, url }) {
 
-	let query = url.searchParams.get('query')
-	let page = parseInt(url.searchParams.get('page') || "1")
+	const page = parseInt(url.searchParams.get('page') ?? '1')
+	const perPage = 10
+	const query = url.searchParams.get('query')
+	const period = url.searchParams.get('period')
 
-	let filter = 'period="2024-2"'
+	
+	// Filter Logic ~
+	let filters: string[] = ['']
 
 	if (query) {
-		filter += `&&name~"${query}"`
+		filters.push(`name ~ "${query}"`)
 	}
-	
-	const resultList = await locals.pb.collection('students').getList(page, 10, {
-		filter,
+
+	if (period) {
+		filters.push(`period = "${period}"`)
+	}
+
+
+	// Get Data from DB
+	const resultList = await locals.pb.collection('students').getList(page, perPage, {
 		sort: 'name',
 		expand: 'user_id,career',
+		filter: filters.join('&&')
 	});
 
 	return {
-		alumnos: resultList.items,
+		students: resultList.items,
 		page: resultList.page,
 		perPage: resultList.perPage,
 		totalItems: resultList.totalItems,
