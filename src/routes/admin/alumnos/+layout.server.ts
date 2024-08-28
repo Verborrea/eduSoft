@@ -15,8 +15,6 @@ export async function load({ locals }) {
 		name: `${g.expand?.course.name} ${g.turno} ${g.seccion}`
 	}})
 
-	console.log(groups)
-
 	const estados = [ 'Activo', 'Inactivo' ]
 	const periods = [ '2024-II', '2025-I' ]
 
