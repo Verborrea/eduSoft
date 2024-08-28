@@ -38,15 +38,20 @@
 				--both: #7c7c7c;		/* usar en textos */	
 				--text: #2e2e2e;
 				--primary: #111;	
-				--red: #FF595E;
+				--red: #E74C3C;
 				--red-dark: hsl(358, 100%, 47%);
 				--green: #8AC926;
 				--green-dark: hsl(83, 68%, 37%);
-				--blue: #1982C4;
+				--blue: #3498DB;
 				--purple: #6A4C93;
 				--yellow: #FFCA3A;
 				--yellow-dark: hsl(44, 100%, 45%);
 				--outline: #1982c442;
+
+				--neutral-200: #f9f9f9;
+				--neutral-300: #ececec;
+				--neutral-500: #7d7d7d;
+				--neutral-800: #2e2e2e;
 
 				background-color: var(--back);
 				color: var(--text);
@@ -93,6 +98,9 @@
 			a:active,
 			button:active {
 				transform: scale(0.95);
+			}
+			a.disabled:active {
+				transform: none;
 			}
 			input {
 				accent-color: var(--text);
@@ -233,6 +241,9 @@
 			}
 			.text-blue {
 				color: var(--blue);
+			}
+			.text-red {
+				color: var(--red) !important;
 			}
 			/* ================= Clases útiles ================= */
 			.none {

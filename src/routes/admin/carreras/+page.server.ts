@@ -1,8 +1,10 @@
-export async function load({ locals }) {
+export async function load({ locals, url }) {
 	
+	const page = parseInt(url.searchParams.get('page') ?? '1')
+
 	// fetch a paginated records list
-	const resultList = await locals.pb.collection('careers').getList(1, 20, {
-		sort: 'name'
+	const resultList = await locals.pb.collection('careers').getList(page, 10, {
+		sort: '-created'
 	});
 
 	return {

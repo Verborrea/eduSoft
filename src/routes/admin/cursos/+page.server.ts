@@ -1,22 +1,26 @@
 export async function load({ locals, url }) {
-	let page = parseInt(url.searchParams.get('page') || "1")
+
+	const page = parseInt(url.searchParams.get('page') ?? '1')
 	
-	let filterArray: string[] = []
+	// Filter Logic
+	let filterArray: string[] = [];
 
 	url.searchParams.forEach((value, key) => {
-		filterArray.push(`${key} ~ "${value}"`);
+		if (key !== 'page') { // Excluir el parámetro 'page' de los filtros
+			filterArray.push(`${key} ~ "${value}"`);
+		}
 	});
 
 	let filter = filterArray.length > 0 ? filterArray.join(' && ') : '';
 
-	const resultList = await locals.pb.collection('courses').getList(page, 20, {
-		sort: 'name',
+	const resultList = await locals.pb.collection('courses').getList(page, 5, {
+		sort: 'career.short_name',
 		expand: 'career',
 		filter
 	});
 
 	return {
-		cursos: resultList.items,
+		courses: resultList.items,
 		page: resultList.page,
 		perPage: resultList.perPage,
 		totalItems: resultList.totalItems,

@@ -6,6 +6,8 @@
 
 	let searchParams = new URLSearchParams($page.url.search)
 
+	$: courses = data.courses
+
 	function updateURLParam(event: Event) {
 		const target = event.target as HTMLSelectElement | HTMLInputElement;
 		searchParams.set(target.name, target.value);
@@ -52,7 +54,7 @@
 			<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 9.16666C1.5 4.93248 4.93248 1.5 9.16666 1.5C13.4009 1.5 16.8334 4.93247 16.8334 9.16666C16.8334 10.9233 16.2426 12.542 15.2489 13.8348L18.2071 16.793C18.5976 17.1835 18.5976 17.8167 18.2071 18.2072C17.8166 18.5978 17.1834 18.5978 16.7929 18.2072L13.8346 15.249C12.5419 16.2426 10.9233 16.8334 9.16666 16.8334C4.93247 16.8334 1.5 13.4009 1.5 9.16666ZM13.2559 13.0897C13.2254 13.1138 13.196 13.1399 13.1679 13.168C13.1398 13.1961 13.1137 13.2255 13.0896 13.256C12.0715 14.233 10.6892 14.8334 9.16666 14.8334C6.03705 14.8334 3.5 12.2963 3.5 9.16666C3.5 6.03705 6.03705 3.5 9.16666 3.5C12.2963 3.5 14.8334 6.03705 14.8334 9.16666C14.8334 10.6892 14.2329 12.0716 13.2559 13.0897Z" fill="#111111"/>
 			</svg>
-			<input type="text" placeholder="Buscar Cursos" name="name" on:input={updateURLParam}>
+			<input type="text" placeholder="Buscar Cursos" name="name" on:change={updateURLParam}>
 		</div>
 		<a class="btn btn-primary" title="Refrescar" href="/admin/cursos" data-sveltekit-reload>
 			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" class="icon-md-heavy"><path fill="white" d="M3.07 10.876C3.623 6.436 7.41 3 12 3a9.15 9.15 0 0 1 6.012 2.254V4a1 1 0 1 1 2 0v4a1 1 0 0 1-1 1H15a1 1 0 1 1 0-2h1.957A7.15 7.15 0 0 0 12 5a7 7 0 0 0-6.946 6.124 1 1 0 1 1-1.984-.248m16.992 1.132a1 1 0 0 1 .868 1.116C20.377 17.564 16.59 21 12 21a9.15 9.15 0 0 1-6-2.244V20a1 1 0 1 1-2 0v-4a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2H7.043A7.15 7.15 0 0 0 12 19a7 7 0 0 0 6.946-6.124 1 1 0 0 1 1.116-.868"></path></svg>
@@ -108,9 +110,9 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each data.cursos as curso}
+			{#each data.courses as curso}
 				<tr>
-					<td>
+					<td class="center">
 						<input
 							type="checkbox"
 							name="select"
@@ -122,7 +124,7 @@
 					<td class="nowrap">{curso.name}</td>
 					<td class="nowrap" >{curso.expand ? curso.expand.career.short_name : '-'}</td>
 					<td><div class="cell-fc">{curso.module}</div></td>
-					<td>{curso.description}</td>
+					<td>{curso.description || 'Ninguna'}</td>
 					<td>
 						<div class="cell-fc">
 							<a href="/admin/cursos/editar?id={curso.id}">
@@ -138,7 +140,7 @@
 	</table>
 	<div class="justify-between fc">
 		<div class="fc g24">	
-			<span>{data.cursos.length > 0 ? (data.perPage * (data.page - 1) + 1) : 0} - {data.perPage*data.page > data.totalItems ? data.totalItems : data.page*data.perPage} de {data.totalItems} cursos</span>
+			<span>{courses.length > 0 ? (data.perPage * (data.page - 1) + 1) : 0} - {data.perPage*data.page > data.totalItems ? data.totalItems : data.page*data.perPage} de {data.totalItems} cursos</span>
 			<span class="text-blue">{ids.length} cursos seleccionados</span>
 		</div>
 		<div class="fc g8">
@@ -160,6 +162,9 @@
 <style>
 	.nowrap {
 		white-space: nowrap;
+	}
+	.center {
+		text-align: center;
 	}
 	h1 {
 		margin: 0;

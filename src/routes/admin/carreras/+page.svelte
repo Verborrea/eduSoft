@@ -72,7 +72,7 @@
 					<th>#</th>
 					<th>NOMBRE OFICIAL</th>
 					<th>ABREVIACIÓN</th>
-					<th>FECHA DE CREACIÓN</th>
+					<th>CREACIÓN</th>
 					<th>EDITAR</th>
 					<th>BORRAR</th>
 				</tr>
@@ -81,7 +81,7 @@
 			{#each data.carreras as carrera, index}
 			<tr>
 				<td> <div class="cell-fc">
-					{index+1}
+					{(data.page - 1) * data.perPage + index + 1}
 				</div> </td>
 				<td> {carrera.name} </td>
 				<td> {carrera.short_name} </td>
@@ -118,7 +118,7 @@
 	</div>
 	<div class="justify-between fc">
 		<div class="fc g24">	
-			<span> {data.page} - {data.perPage < data.totalItems ? data.perPage : data.totalItems} de {data.totalItems} carreras</span>
+			<span>Mostrando {data.perPage * (data.page - 1) + 1} - {data.perPage*data.page > data.totalItems ? data.totalItems : data.page*data.perPage} de {data.totalItems} carreras</span>
 		</div>
 		<div class="fc g8">
 			<a class="btn btn-secondary p10" class:disabled={data.page == 1} href="?page={data.page > 1 ? data.page - 1 : data.page}">
