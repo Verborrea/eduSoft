@@ -1,22 +1,32 @@
 export async function load({ locals, url }) {
 
 	const page = parseInt(url.searchParams.get('page') ?? '1')
+	const perPage = 10
+	const query = url.searchParams.get('query')
+	const mod = url.searchParams.get('module')
+	const career = url.searchParams.get('career')
 	
-	// Filter Logic
-	let filterArray: string[] = [];
 
-	url.searchParams.forEach((value, key) => {
-		if (key !== 'page') { // Excluir el parámetro 'page' de los filtros
-			filterArray.push(`${key} ~ "${value}"`);
-		}
-	});
+	// Filter Logic ~
+	let filters: string[] = []
 
-	let filter = filterArray.length > 0 ? filterArray.join(' && ') : '';
+	if (query) {
+		filters.push(`name ~ "${query}"`)
+	}
 
-	const resultList = await locals.pb.collection('courses').getList(page, 5, {
+	if (mod) {
+		filters.push(`module = "${mod}"`)
+	}
+	
+	if (career) {
+		filters.push(`career = "${career}"`)
+	}
+
+	// Get Data from DB
+	const resultList = await locals.pb.collection('courses').getList(page, perPage, {
 		sort: 'career.short_name',
 		expand: 'career',
-		filter
+		filter: filters.join('&&')
 	});
 
 	return {
@@ -32,14 +42,16 @@ export const actions = {
 	delete: async ({ locals, request }) => {
 		const data = await request.formData()
 
-		const ids = data.get('ids')?.toString().split(',') || []
+		const selection = data.get('selection')?.toString().split(',') || []
 
-		ids.forEach(async (id) => {
+		selection.forEach(async (id) => {
 			try {
 				await locals.pb.collection('courses').delete(id);
 			} catch (error) {
 				console.error(error)
 			}
 		});
+
+		return { success: true, quantity: selection.length };
 	}
 }

@@ -5,7 +5,10 @@ export async function load({ locals }) {
 		fields: 'id,short_name'
 	});
 
+	const modules = [ 'I','II','III','IV','V','VI','VII','VIII','IX','X' ]
+
 	return {
-		careers
+		careers,
+		modules
 	};
 };

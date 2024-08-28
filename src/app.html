@@ -37,7 +37,6 @@
 				--gray-dark: #c1c1c1;
 				--both: #7c7c7c;		/* usar en textos */	
 				--text: #2e2e2e;
-				--primary: #111;	
 				--red: #E74C3C;
 				--red-dark: hsl(358, 100%, 47%);
 				--green: #8AC926;
@@ -48,8 +47,13 @@
 				--yellow-dark: hsl(44, 100%, 45%);
 				--outline: #1982c442;
 
+				--primary: #2C3E50;
+				--secondary: #3498DB;
+
 				--neutral-200: #f9f9f9;
 				--neutral-300: #ececec;
+				--neutral-350: #D3D3D3;
+				--neutral-400: #b4b4b4;
 				--neutral-500: #7d7d7d;
 				--neutral-800: #2e2e2e;
 
@@ -69,20 +73,17 @@
 			body {
 				margin: 0;
 			}
-			:root,
-			button,
-			input,
-			textarea,
-			select {
+			:root, button, input, textarea, select {
 				padding: 0;
-				font:
-					16px "BC",
-					sans-serif;
+				font: 16px "BC", sans-serif;
 				font-weight: 500;
 				border: none;
 			}
-			img,
-			svg {
+			h1, h2, h3, h4 {
+				color: var(--primary);
+			}
+			img, svg {
+				flex-shrink: 0;
 				display: block;
 			}
 			a {
@@ -121,26 +122,29 @@
 				justify-content: center;
 				gap: 8px;
 				text-decoration: none !important;
-				border-radius: 12px;
+				border-radius: 10px;
 				line-height: 24px;
+				padding: 10px;
+				background: var(--neutral-300);
 			}
 			.btn-primary {
 				background-color: var(--primary);
 				color: var(--back);
-				padding: 10px 24px;
+				padding: 10px 16px;
 			}
 			.btn-primary:hover {
-				background-color: var(--text);
+				background-color: color-mix(in srgb, var(--primary) 80%, black)
 			}
 			.btn-primary:disabled {
 				background-color: var(--inactive);
 			}
 			.btn-secondary {
-				background-color: var(--gray);
-				padding: 10px 24px;
+				color: white;
+				background-color: var(--secondary);
+				padding: 10px 16px;
 			}
 			.btn-secondary:hover {
-				background-color: var(--gray-dark);
+				background-color: color-mix(in srgb, var(--secondary) 80%, black)
 			}
 			.btn-secondary:disabled {
 				background-color: var(--gray) !important;
@@ -148,7 +152,7 @@
 			}
 			.btn-outline {
 				border: 2px solid var(--gray);
-				padding: 8px 22px;
+				padding: 8px 14px;
 			}
 			.btn-outline:hover {
 				background: var(--gray);
@@ -162,19 +166,18 @@
 				background: var(--red);
 				color: var(--back);
 			}
-			.btn.green, .btn.red {
-				padding: 10px 24px;
+			.btn.green, .btn-error {
+				padding: 10px 16px;
 				color: var(--back);
+				background: var(--red);
 				justify-content: center;
-			}
-			.btn.green:disabled {
-				background: #d0e8aa;
-			}
-			.btn.red:disabled {
-				background: #FFC6C8;
 			}
 			.btn:disabled:active {
 				transform: scale(1) !important;
+			}
+			.btn:disabled {
+				background: var(--neutral-350) !important;
+				color: var(--neutral-400) !important;
 			}
 			/* ============== Inputs ============== */
 			input, textarea, select {
@@ -193,28 +196,18 @@
 				align-items: center;
 				gap: 8px;
 			}
-			select {
+			.select {
 				appearance: none;
 				border-radius: 12px;
 				padding: 10px 16px;
 				padding-right: 52px;
 				background: var(--gray);
+				font-size: 14px;
 				color: var(--text);
 				outline-color: var(--outline);
-			}
-			.select {
-				position: relative;
-			}
-			.select::after {
-				content: "";
-				width: 20px;
-				height: 20px;
 				background-image: url('/select.svg');
-				font-size: 1rem;
-				top: 50%;
-				transform: translateY(-50%);
-				right: 16px;
-				position: absolute;
+				background-repeat: no-repeat;
+				background-position: calc(100% - 12px);
 			}
 			textarea {
 				flex: auto;
@@ -246,7 +239,7 @@
 				color: var(--red) !important;
 			}
 			/* ================= Clases útiles ================= */
-			.none {
+			.none, .hidden {
 				display: none;
 			}
 			.rel {
@@ -346,26 +339,29 @@
 				padding: 0;
 				box-sizing: border-box;
 				border-collapse: collapse;
-				border-radius: 16px;
-				overflow: hidden;
 				min-width: 100%;
 			}
 			th {
 				font-weight: bold;
-				background: black;
-				color: white;
-				font-size: 14px;
+				color: var(--neutral-500);
+			}
+			thead {
+				border-bottom: 1px solid var(--neutral-300);
 			}
 			tr {
 				font-weight: 400;
-				background: #F9F9F9;
 			}
-			tr:hover, tr.selected {
-				background-color: #ececec;
+			tbody tr:hover, tbody tr:nth-child(even) {
+				background-color: var(--neutral-200);
+			}
+			tr.selected {
+				background-color: var(--neutral-300) !important;
 			}
 			/* --------------------------- */
 			tr > th, td {
-				padding: 8px 16px;
+				padding: 10px 16px;
+				line-height: 24px;
+				font-size: 14px;
 			}
 			.cell-l {
 				text-align: left;

@@ -12,7 +12,7 @@
 
 <div class="main">
 	<header class="flex g16">
-		<button on:click={volver} type="button" class="prev"><h1>Cursos</h1></button>
+		<button on:click={volver} type="button" class="prev"><h1>Lista de Cursos</h1></button>
 		<svg width="13" height="20" viewBox="0 0 13 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.63182 10.1778L0 3.39862L2.85934 0.60144L12.2275 10.1778L3.20716 19.3986L0.347826 16.6014L6.63182 10.1778Z" fill="#B4B4B4"/></svg>
 		<h1>{data.course.name}</h1>
 	</header>

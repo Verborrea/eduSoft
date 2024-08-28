@@ -104,9 +104,6 @@
 	a:hover {
 		text-decoration: none;
 	}
-	svg {
-		flex-shrink: 0;
-	}
 
 	/* Sidebar minimizada */
 	.mini {
