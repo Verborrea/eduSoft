@@ -1,9 +1,51 @@
-<script>
+<script lang="ts">
 	export let data
 
 	function volver() {
 		window.history.back();
 	}
+
+	const days = [
+		{short: 'L', name: 'lunes', selected: false},
+		{short: 'M', name: 'martes', selected: false},
+		{short: 'X', name: 'miercoles', selected: false},
+		{short: 'J', name: 'jueves', selected: false},
+		{short: 'V', name: 'viernes', selected: false},
+	];
+
+	function toggleDay(dayIndex: number) {
+		days[dayIndex].selected = !days[dayIndex].selected;
+	}
+
+	let startTime = '';
+	let endTime = '';
+	let horarios: { dia:string, inicio:string, fin:string}[] = [];
+
+	function generarJSON() {
+		// Crear una entrada para cada día seleccionado
+		const selectedDays = days.filter(day => day.selected);
+		const nuevosHorarios = selectedDays.map(day => ({
+			dia: day.name,
+			inicio: startTime,
+			fin: endTime
+		}));
+
+		// Actualizar la lista de horarios
+		horarios = [...horarios, ...nuevosHorarios];
+
+		// Crear JSON para revisar el formato
+		const datosFormulario = {
+			curso: 'ejemplo de curso',
+			horarios
+		};
+		const jsonString = JSON.stringify(datosFormulario, null, 2);
+		console.log(jsonString);;
+	}
+
+	function eliminarHorario(index: number) {
+		horarios = horarios.filter((_, i) => i !== index);
+	}
+	
 </script>
 
 <svelte:head>
@@ -68,16 +110,41 @@
 				{/each}
 			</select>
 		</label>
-		<label for="horario">
-			Horario:
-			<select id="horario" name="horario" class="select" required>
-				<option value="" selected disabled>¿Qué días se dictarán clases?</option>
-				{#each data.horarios as h}
-					<option value={h}>{h}</option>
-				{/each}
-			</select>
-		</label>
-		
+		<div class="seccion">
+			<h2>Horarios</h2>
+			<div class="row">
+				<label>
+					Inicio:
+					<input type="time" id="" bind:value={startTime}>
+				</label>
+				<label>
+					Fin:					
+					<input type="time" id="" bind:value={endTime}>
+				</label>
+				<label for="">
+					Días
+					<div class="row">
+						{#each days as day, index}
+						<button class="dia {day.selected ? 'selected' : ''}" on:click={() => toggleDay(index)}>
+							{day.short}
+						</button>
+						{/each}
+					</div>
+				</label>
+			</div>
+		</div>
+		<button type="button" class="btn" on:click={generarJSON}>Generar JSON</button>		
+
+		<div id="horarios-container">
+			{#each horarios as horario, index}
+				<div class="horario-item">
+					<span>{horario.dia} de {horario.inicio} a {horario.fin}</span>
+					<button class="close-btn" on:click={() => eliminarHorario(index)}>X</button>
+				</div>
+			{/each}
+		</div>
+
+
 		<div class="flex justify-end g12">
 			<button class="btn" type="button" on:click={volver}>Cancelar</button>
 			<button class="btn btn-primary" type="submit">
@@ -122,5 +189,58 @@
 	}
 	.justify-end {
 		justify-content: flex-end;
+	}
+	h2 {
+		margin: 0;
+	}
+	label {
+		font-weight: bold;
+	}
+	input[type=time] {
+		height: 44px;
+		border-radius: 12px;
+		padding: 10px 16px;
+	}
+	.seccion {
+    width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+	.row {
+		display: flex;
+			flex-direction: row;
+			gap: 12px;
+			align-items: flex-end;
+	}
+	.dia {
+		width: 44px;
+		height: 44px;
+		margin-top: 8px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: var(--gray);
+		border-radius: 12px;
+		font-weight: bold;
+		user-select: none;
+	}
+	.dia:hover {
+		background-color: #CFCFCF;
+	}
+	.dia.selected {
+		background-color: var(--blue);
+	}
+	#horarios-container {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+	.horario-item {
+		display: flex;
+		padding: 10px 16px;
+		justify-content: space-between;
+		background-color: var(--gray);
+		border-radius: 12px;
 	}
 </style>

@@ -157,5 +157,8 @@
       background-color: white;
       z-index: 11;
     }
+    .block {
+      padding: 8px;
+    }
   }
 </style>
